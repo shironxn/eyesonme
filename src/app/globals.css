@@ -25,3 +25,25 @@
 
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+a:hover::after,
+a:focus::after {
+  width: 100%;
+}
