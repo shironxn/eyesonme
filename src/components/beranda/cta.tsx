@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ClipboardListIcon, StarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function BerandaCTA() {
@@ -12,9 +13,12 @@ export function BerandaCTA() {
         onClick={() => router.push("/program-kerja")}
         className="bg-secondary"
       >
+        <ClipboardListIcon />
         Program Kerja
       </Button>
-      <Button onClick={() => router.push("#visi-misi")}>Visi Misi</Button>
+      <Button onClick={() => router.push("#visi-misi")}>
+        <StarIcon /> Visi Misi
+      </Button>
     </>
   );
 }
