@@ -41,7 +41,7 @@ export default function Home() {
         </div>
 
         {/* Image Section */}
-        <div className="flex-1 flex justify-center md:justify-end">
+        <div className="flex-1 flex justify-center md:justify-end w-1/2">
           <Image
             src={"/logo.svg"}
             alt="logo"
