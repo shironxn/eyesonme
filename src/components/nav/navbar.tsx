@@ -16,9 +16,12 @@ export function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="py-8 bg-bw">
+    <div className="py-4 md:py-8 bg-bw">
       <div className="container mx-auto flex justify-between items-center">
-        <div onClick={() => router.push("/")} className="hover: cursor-pointer">
+        <div
+          onClick={() => router.push("/")}
+          className="hover: cursor-pointer font-semibold text-lg"
+        >
           EyesOnMe
         </div>
 

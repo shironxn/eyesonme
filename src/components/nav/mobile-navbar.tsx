@@ -3,10 +3,8 @@
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -34,7 +32,7 @@ export function MobileNavbar({
           </DrawerHeader>
           <div className="flex flex-col gap-2 items-center pb-8">
             {links.map((item, index) => (
-              <Link key={index} href={item.href}>
+              <Link key={index} href={item.href} className="text-xl">
                 {item.name}
               </Link>
             ))}
