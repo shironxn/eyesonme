@@ -74,26 +74,28 @@ export default function Home() {
                 alt="image"
                 width={500}
                 height={500}
-                className="max-w-full h-auto rounded-base grayscale hover:grayscale-0 transition-all duration-300 ease-in-out"
+                className="w-full h-auto rounded-base grayscale hover:grayscale-0 transition-all duration-300 ease-in-out"
               />
             </div>
 
-            <div className="relative shadow-accent shadow-[4px_6px_0px_#000] rounded-base border-2 border-accent">
-              <Image
-                src={"/image2.jpg"}
-                alt="image"
-                width={500}
-                height={500}
-                className="max-w-full h-auto rounded-base grayscale hover:grayscale-0 transition-all duration-300 ease-in-out"
-              />
-              <div className="absolute top-32 -right-12">
+            <div className="relative">
+              <div className="shadow-accent shadow-[4px_6px_0px_#000] rounded-base border-2 border-accent">
                 <Image
-                  src={"/spark.svg"}
-                  alt="spark"
-                  width={100}
-                  height={100}
+                  src={"/image2.jpg"}
+                  alt="image"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto rounded-base grayscale hover:grayscale-0 transition-all duration-300 ease-in-out"
                 />
               </div>
+
+              <Image
+                src={"/spark.svg"}
+                alt="spark"
+                width={100}
+                height={100}
+                className="w-1/6 md:1/5 h-auto absolute -right-0 bottom-0 z-10 translate-x-7 md:translate-x-10 translate-y-8 md:translate-y-10"
+              />
             </div>
           </div>
         </div>
