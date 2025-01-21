@@ -1,6 +1,15 @@
 import { BerandaCTA } from "@/components/beranda/cta";
 import Image from "next/image";
 import Marquee from "@/components/ui/marquee";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 const welcomes = [
   "welcome",
@@ -38,6 +47,27 @@ const misi = [
   "Menjalin kerjasama dengan sekolah, Perguruan Tinggi, dan Lembaga dalam serta luar negeri.",
   "Membiasakan berperilaku hidup bersih dan sehat.",
   "Menciptakan lingkungan yang nyaman dan asri.",
+];
+
+const berita = [
+  {
+    title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
+    description:
+      "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
+    thumbnail: "/image.jpg",
+  },
+  {
+    title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
+    description:
+      "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
+    thumbnail: "/image.jpg",
+  },
+  {
+    title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
+    description:
+      "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
+    thumbnail: "/image.jpg",
+  },
 ];
 
 export default function Home() {
@@ -148,7 +178,7 @@ export default function Home() {
           alt="shape"
           width={200}
           height={200}
-          className="absolute top-10 left-0 -translate-x-8 sm:-translate-x-10 lg:top-16 lg:-translate-x-10 xl:translate-x-0"
+          className="absolute top-10 left-0 -translate-x-16 lg:top-16 lg:-translate-x-10 xl:translate-x-0"
         />
         <Image
           src={"/shape-2.svg"}
@@ -166,7 +196,63 @@ export default function Home() {
         />
       </div>
 
-      <div className="min-h-screen"></div>
+      {/* Berita Terbaru */}
+      <div className="py-12 md:py-24">
+        <div className="container mx-auto space-y-12">
+          <div className="text-center">
+            <h2>Berita Terbaru</h2>
+            <p>
+              Berita terkini seputar kegiatan, prestasi, dan acara OSIS SMAN 48
+              Jakarta.
+            </p>
+          </div>
+          <div className="flex md:grid md:grid-cols-3 gap-8 snap-x overflow-scroll">
+            {berita.map((item, index) => (
+              <div key={index} className="snap-center shrink-0 w-full">
+                <Card>
+                  <CardHeader>
+                    <Image
+                      src={item.thumbnail}
+                      alt="thumbnail"
+                      width={500}
+                      height={500}
+                    />
+                    <CardTitle>{item.title}</CardTitle>
+                    <CardDescription>{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Aspirasi Section */}
+      <div className="py-12 md:py-24 bg-secondary rounded-t-[48px] md:rounded-t-[96px]">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
+          <div className="space-y-8">
+            <div className="text-center md:text-left">
+              <h2>Aspirasi</h2>
+              <p>Sampaikan aspirasi Anda untuk membantu kami.</p>
+            </div>
+            <div className="flex justify-center md:hidden">
+              <Image src="/berita.png" alt="berita" width={200} height={200} />
+            </div>
+            <div className="space-y-4">
+              <Label htmlFor="aspirasi">Tulis aspirasi Anda</Label>
+              <Textarea
+                id="aspirasi"
+                placeholder="Contoh: aku mw makan siang gratis"
+              />
+              <Button>Kirim</Button>
+            </div>
+          </div>
+
+          <div className="hidden md:flex justify-center">
+            <Image src="/berita.png" alt="berita" width={250} height={250} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
