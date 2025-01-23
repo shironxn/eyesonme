@@ -50,24 +50,36 @@ blockquote {
   @apply mt-6 border-l-2 pl-6 italic;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  position: relative;
+@layer base {
+  a {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease-in-out;
+  }
+
+  a:hover::after,
+  a:focus::after {
+    width: 100%;
+  }
 }
 
-a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-  background-color: currentColor;
-  transition: width 0.3s ease-in-out;
-}
-
-a:hover::after,
-a:focus::after {
-  width: 100%;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

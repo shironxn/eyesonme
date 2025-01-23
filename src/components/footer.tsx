@@ -18,7 +18,7 @@ const links: { icon: LucideIcon; href: string }[] = [
 export function Footer() {
   const router = useRouter();
   return (
-    <footer className="md:flex items-center justify-center py-16 gap-8 bg-bw border-t-2 border-border space-y-6">
+    <footer className="md:flex items-center justify-center py-8 gap-8 bg-bw space-y-6">
       <div className="flex justify-center">
         <Image src="/logo.svg" alt="logo" width={100} height={100} />
       </div>

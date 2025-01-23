@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 const welcomes = [
   "welcome",
@@ -51,18 +52,21 @@ const misi = [
 
 const berita = [
   {
+    id: 1,
     title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
     description:
       "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
     thumbnail: "/image.jpg",
   },
   {
+    id: 2,
     title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
     description:
       "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
     thumbnail: "/image.jpg",
   },
   {
+    id: 3,
     title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
     description:
       "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
@@ -88,7 +92,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex-1 flex justify-center md:justify-end w-1/2">
+          <div className="flex-1 flex justify-center lg:justify-end w-1/2">
             <Image
               src={"/logo.svg"}
               alt="logo"
@@ -206,9 +210,12 @@ export default function Home() {
               Jakarta.
             </p>
           </div>
-          <div className="flex md:grid md:grid-cols-3 gap-8 snap-x overflow-scroll">
+          <div className="flex overflow-x-scroll snap-x snap-mandatory flex-nowrap md:grid md:grid-cols-3 md:overflow-visible gap-8 no-scrollbar">
             {berita.map((item, index) => (
-              <div key={index} className="snap-center shrink-0 w-full">
+              <div
+                key={index}
+                className="snap-center shrink-0 w-full md:w-auto p-2"
+              >
                 <Card>
                   <CardHeader>
                     <Image
@@ -217,7 +224,12 @@ export default function Home() {
                       width={500}
                       height={500}
                     />
-                    <CardTitle>{item.title}</CardTitle>
+                    <Link
+                      href={`/berita/${item.id}`}
+                      className="cursor-pointer hover:text-secondary after:content-none hover:after:content-none focus:after:content-none`"
+                    >
+                      <CardTitle>{item.title}</CardTitle>
+                    </Link>
                     <CardDescription>{item.description}</CardDescription>
                   </CardHeader>
                 </Card>

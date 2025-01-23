@@ -30,9 +30,13 @@ export function MobileNavbar({
             <DrawerTitle></DrawerTitle>
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
-          <div className="flex flex-col gap-2 items-center pb-8">
+          <div className="flex flex-col gap-4 pb-8">
             {links.map((item, index) => (
-              <Link key={index} href={item.href} className="text-xl">
+              <Link
+                key={index}
+                href={item.href}
+                className="text-xl after:content-none hover:after:content-none focus:after:content-none hover:text-secondary"
+              >
                 {item.name}
               </Link>
             ))}
