@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <div className="py-12 md:py-24 bg-bg">
+      <div className="py-12 md:py-24 bg-bg overflow-x-hidden">
         <div
           className="container mx-auto flex flex-col-reverse lg:flex-row justify-between items-center gap-8 md:gap-16"
           data-aos="zoom-out"
