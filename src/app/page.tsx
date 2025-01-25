@@ -98,8 +98,8 @@ export default function Home() {
 
           <div className="flex-1 flex justify-center lg:justify-end w-1/2">
             <Image
-              src={"/icons/logo.svg"}
-              alt="logo"
+              src={"/logo/eyesonme.svg"}
+              alt="eyesonme"
               width={250}
               height={250}
               className="max-w-full h-auto"

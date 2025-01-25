@@ -25,8 +25,43 @@ const links: { name: string; icon: string; href: string }[] = [
 export function Footer() {
   return (
     <footer className="md:flex items-center justify-center py-8 gap-8 bg-bw space-y-6">
-      <div className="flex justify-center">
-        <Image src="/icons/logo.svg" alt="logo" width={100} height={100} />
+      <div className="flex gap-6 items-center justify-center">
+        <motion.div
+          whileHover={{ scale: 1.1, y: -8 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="flex items-center justify-center"
+        >
+          <Link
+            href="https://eyesonme48.vercel.app"
+            className="after:content-none hover:after:content-none focus:after:content-none"
+            target="_blank"
+          >
+            <Image
+              src="/logo/eyesonme.svg"
+              alt="Eyes on Me Logo"
+              width={60}
+              height={60}
+            />
+          </Link>
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.1, y: -8 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="flex items-center justify-center"
+        >
+          <Link
+            href="https://sman48-jkt.sch.id"
+            className="after:content-none hover:after:content-none focus:after:content-none"
+            target="_blank"
+          >
+            <Image
+              src="/logo/sman48.png"
+              alt="SMAN 48 Jakarta Logo"
+              width={60}
+              height={60}
+            />
+          </Link>
+        </motion.div>
       </div>
       <div className="space-y-6">
         <div className="text-center md:text-left">
@@ -42,7 +77,7 @@ export function Footer() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <Link
-                className="hover:cursor-pointer after:content-none hover:after:content-none focus:after:content-none"
+                className="after:content-none hover:after:content-none focus:after:content-none"
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
