@@ -1,26 +1,32 @@
 "use client";
 
-import { InstagramIcon, LucideIcon, YoutubeIcon } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { motion } from "motion/react";
 
-const links: { icon: LucideIcon; href: string }[] = [
+const links: { name: string; icon: string; href: string }[] = [
   {
-    icon: InstagramIcon,
-    href: "https://instagram.com",
+    name: "instagram",
+    icon: "/icons/instagram.svg",
+    href: "https://www.instagram.com/mpkosis48",
   },
   {
-    icon: YoutubeIcon,
-    href: "https://youtube.com",
+    name: "youtube",
+    icon: "/icons/youtube.svg",
+    href: "https://youtube.com/@smanegeri48jakarta",
+  },
+  {
+    name: "tiktok",
+    icon: "/icons/tiktok.svg",
+    href: "https://www.tiktok.com/@mpkosis48",
   },
 ];
 
 export function Footer() {
-  const router = useRouter();
   return (
     <footer className="md:flex items-center justify-center py-8 gap-8 bg-bw space-y-6">
       <div className="flex justify-center">
-        <Image src="/logo.svg" alt="logo" width={100} height={100} />
+        <Image src="/icons/logo.svg" alt="logo" width={100} height={100} />
       </div>
       <div className="space-y-6">
         <div className="text-center md:text-left">
@@ -29,13 +35,21 @@ export function Footer() {
         </div>
         <div className="flex justify-center md:justify-start gap-4">
           {links.map((item, index) => (
-            <span
+            <motion.div
+              className="flex items-center justify-center "
               key={index}
-              className="bg-bg rounded-full p-2 hover:cursor-pointer flex items-center justify-center"
-              onClick={() => router.push(item.href)}
+              whileHover={{ scale: 1.1, y: -8 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              {<item.icon />}
-            </span>
+              <Link
+                className="hover:cursor-pointer after:content-none hover:after:content-none focus:after:content-none"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image src={item.icon} alt="icon" width={24} height={24} />
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

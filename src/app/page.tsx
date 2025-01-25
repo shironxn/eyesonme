@@ -98,7 +98,7 @@ export default function Home() {
 
           <div className="flex-1 flex justify-center lg:justify-end w-1/2">
             <Image
-              src={"/logo.svg"}
+              src={"/icons/logo.svg"}
               alt="logo"
               width={250}
               height={250}
@@ -137,7 +137,7 @@ export default function Home() {
               data-aos="fade-up"
             >
               <Image
-                src={"/image1.jpg"}
+                src={"/beranda/image1.jpg"}
                 alt="image"
                 width={500}
                 height={500}
@@ -151,7 +151,7 @@ export default function Home() {
                 data-aos="fade-up"
               >
                 <Image
-                  src={"/image2.jpg"}
+                  src={"/beranda/image2.jpg"}
                   alt="image"
                   width={500}
                   height={500}
@@ -160,7 +160,7 @@ export default function Home() {
               </div>
 
               <Image
-                src={"/spark.svg"}
+                src={"/beranda/spark.svg"}
                 alt="spark"
                 width={100}
                 height={100}
@@ -213,21 +213,21 @@ export default function Home() {
           </motion.div>
         </div>
         <Image
-          src={"/shape-1.svg"}
+          src={"/beranda/shape-1.svg"}
           alt="shape"
           width={200}
           height={200}
           className="hidden lg:block absolute top-16 -translate-x-12 xl:-translate-x-8"
         />
         <Image
-          src={"/shape-2.svg"}
+          src={"/beranda/shape-2.svg"}
           alt="shape"
           width={100}
           height={100}
           className="hidden lg:block absolute top-[50%] translate-y-8 left-10 xl:translate-y-24"
         />
         <Image
-          src={"/shape-3.svg"}
+          src={"/beranda/shape-3.svg"}
           alt="shape"
           width={100}
           height={100}
@@ -290,7 +290,12 @@ export default function Home() {
               <p>Sampaikan aspirasi Anda untuk membantu kami.</p>
             </div>
             <div className="flex justify-center md:hidden" data-aos="fade-up">
-              <Image src="/berita.png" alt="berita" width={200} height={200} />
+              <Image
+                src="/beranda/berita.png"
+                alt="berita"
+                width={200}
+                height={200}
+              />
             </div>
             <div className="space-y-4" data-aos="fade-up">
               <Label htmlFor="aspirasi">Tulis aspirasi Anda</Label>
@@ -303,7 +308,12 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex justify-center" data-aos="fade-up">
-            <Image src="/berita.png" alt="berita" width={250} height={250} />
+            <Image
+              src="/beranda/berita.png"
+              alt="berita"
+              width={250}
+              height={250}
+            />
           </div>
         </div>
       </div>
