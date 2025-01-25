@@ -56,21 +56,21 @@ const berita = [
     title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
     description:
       "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
-    thumbnail: "/image.jpg",
+    thumbnail: "/beranda/image.jpg",
   },
   {
     id: 2,
     title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
     description:
       "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
-    thumbnail: "/image.jpg",
+    thumbnail: "/beranda/image.jpg",
   },
   {
     id: 3,
     title: "OSIS Gelar Lomba Kebersihan Antar Kelas",
     description:
       "Lomba kebersihan antar kelas berlangsung seru. Kelas XII IPA 2 keluar sebagai juara!",
-    thumbnail: "/image.jpg",
+    thumbnail: "/beranda/image.jpg",
   },
 ];
 
