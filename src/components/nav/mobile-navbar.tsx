@@ -18,31 +18,33 @@ export function MobileNavbar({
   links: { name: string; href: string }[];
 }) {
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button>
-          <MenuIcon />
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <div className="mx-auto w-[300px]">
-          <DrawerHeader>
-            <DrawerTitle></DrawerTitle>
-            <DrawerDescription></DrawerDescription>
-          </DrawerHeader>
-          <div className="flex flex-col gap-4 pb-8">
-            {links.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className="text-xl after:content-none hover:after:content-none focus:after:content-none hover:text-secondary"
-              >
-                {item.name}
-              </Link>
-            ))}
+    <div className="block md:hidden">
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button>
+            <MenuIcon />
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <div className="mx-auto w-[300px]">
+            <DrawerHeader>
+              <DrawerTitle></DrawerTitle>
+              <DrawerDescription></DrawerDescription>
+            </DrawerHeader>
+            <div className="flex flex-col gap-4 pb-8">
+              {links.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className="text-xl after:content-none hover:after:content-none focus:after:content-none hover:text-secondary"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </DrawerContent>
-    </Drawer>
+        </DrawerContent>
+      </Drawer>
+    </div>
   );
 }

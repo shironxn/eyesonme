@@ -8,7 +8,7 @@ export function DesktopNavbar({
   links: { name: string; href: string }[];
 }) {
   return (
-    <ul className="flex gap-4">
+    <ul className="hidden md:flex gap-4">
       {links.map((item, index) => (
         <li key={index}>
           <Link href={item.href}>{item.name}</Link>

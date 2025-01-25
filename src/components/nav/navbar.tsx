@@ -1,6 +1,5 @@
 "use client";
 
-import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileNavbar } from "@/components/nav/mobile-navbar";
 import { DesktopNavbar } from "@/components/nav/desktop-navbar";
 import Link from "next/link";
@@ -22,12 +21,8 @@ export function Navbar() {
         >
           EyesOnMe
         </Link>
-
-        {useIsMobile() ? (
-          <MobileNavbar links={links} />
-        ) : (
-          <DesktopNavbar links={links} />
-        )}
+        <MobileNavbar links={links} />
+        <DesktopNavbar links={links} />
       </div>
     </div>
   );
