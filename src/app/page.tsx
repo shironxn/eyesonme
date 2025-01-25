@@ -32,22 +32,22 @@ const welcomes = [
 ];
 
 const visi =
-  "Mewujudkan Generas yang Sehat, Mandiri, ber Akhlak Mulia, Responsif, Terdepan dan Berwawasan Global (SMART-G).";
+  "Mewujudkan Generasi yang Sehat, Mandiri, ber Akhlak Mulia, Responsif, Terdepan dan Berwawasan Global (SMART-G).";
 
 const misi = [
-  "Membudayakan sikap religius beriman dan bertaqwa.",
-  "Memperkuat nilai budaya dan karakter bangsa.",
-  "Memperkuat nilai-nilai kebangsaan atas keberagaman Indonesia dengan menghargai orang lain.",
-  "Peduli sesama, membentuk kerjasama dan bergotong royong.",
-  "Memberikan layanan pendidikan yang bermutu.",
-  "Optimalisasi 8 standar Pendidikan Nasional.",
-  "Meningkatkan prestasi akademik dan non akademik.",
-  "Manajemen sekolah bersih, transparan, dan profesional.",
-  "Menanamkan jiwa kewirausahaan.",
-  "Meningkatkan dukungan orang tua dan masyarakat.",
-  "Menjalin kerjasama dengan sekolah, Perguruan Tinggi, dan Lembaga dalam serta luar negeri.",
-  "Membiasakan berperilaku hidup bersih dan sehat.",
-  "Menciptakan lingkungan yang nyaman dan asri.",
+  "Membudayakan sikap religius beriman dan bertaqwa",
+  "Memperkuat nilai budaya dan karakter bangsa",
+  "Memperkuat nilai-nilai kebangsaan atas keberagaman Indonesia dengan menghargai orang lain",
+  "Peduli sesama, membentuk kerjasama dan bergotong royong",
+  "Memberikan layanan pendidikan yang bermutu",
+  "Optimalisasi 8 standar Pendidikan Nasional",
+  "Meningkatkan prestasi akademik dan non akademik",
+  "Manajemen sekolah bersih, transparan, dan profesional",
+  "Menanamkan jiwa kewirausahaan",
+  "Meningkatkan dukungan orang tua dan masyarakat",
+  "Menjalin kerjasama dengan sekolah, Perguruan Tinggi, dan Lembaga dalam serta luar negeri",
+  "Membiasakan berperilaku hidup bersih dan sehat",
+  "Menciptakan lingkungan yang nyaman dan asri",
 ];
 
 const berita = [
@@ -123,9 +123,9 @@ export default function Home() {
           >
             <h2>Tentang Kami</h2>
             <p>
-              OSIS SMAN 48 Jakarta adalah wadah bagi siswa untuk mengembangkan
-              karakter, kreativitas, dan kepemimpinan, sekaligus menjadi pelopor
-              perubahan positif di sekolah.
+              MPK-OSIS SMA Negeri 48 Jakarta adalah wadah bagi siswa/i untuk
+              mengembangkan karakter, kreativitas, dan kepemimpinan, sekaligus
+              menjadi pelopor perubahan positif di sekolah.
             </p>
           </div>
           <div className="space-y-4 md:space-y-8">

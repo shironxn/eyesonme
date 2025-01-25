@@ -65,7 +65,10 @@ export function Footer() {
       </div>
       <div className="space-y-6">
         <div className="text-center md:text-left">
-          <p>Copyright © {new Date().getFullYear()} OSIS SMAN 48 Jakarta.</p>
+          <p>
+            Copyright © {new Date().getFullYear()} MPK-OSIS SMA Negeri 48
+            Jakarta.
+          </p>
           <p>All rights reserved.</p>
         </div>
         <div className="flex justify-center md:justify-start gap-4">
