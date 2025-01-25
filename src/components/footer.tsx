@@ -82,7 +82,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image src={item.icon} alt="icon" width={24} height={24} />
+                <Image src={item.icon} alt="eyesonme" width={24} height={24} />
               </Link>
             </motion.div>
           ))}
