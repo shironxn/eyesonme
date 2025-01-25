@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 
@@ -87,9 +86,7 @@ export default function Home() {
           <div className="space-y-6 text-center lg:text-left">
             <div className="space-y-4 text-main">
               <h1>Harsanala Xayasadha</h1>
-              <p className="text-lg md:text-2xl">
-                MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025
-              </p>
+              <p>MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025</p>
             </div>
             <div className="flex justify-center lg:justify-start gap-4">
               <BerandaCTA />
@@ -205,7 +202,8 @@ export default function Home() {
                 {misi.map((item, index) => (
                   <li key={index} className="gap-3 flex items-start ">
                     <span>{index + 1}.</span>
-                    {item}
+
+                    <p>{item}</p>
                   </li>
                 ))}
               </ol>
@@ -287,7 +285,7 @@ export default function Home() {
           <div className="space-y-8">
             <div className="text-center md:text-left" data-aos="fade-up">
               <h2>Aspirasi</h2>
-              <p>Sampaikan aspirasi Anda untuk membantu kami.</p>
+              <p>Sampaikan aspirasi Anda.</p>
             </div>
             <div className="flex justify-center md:hidden" data-aos="fade-up">
               <Image
@@ -298,7 +296,6 @@ export default function Home() {
               />
             </div>
             <div className="space-y-4" data-aos="fade-up">
-              <Label htmlFor="aspirasi">Tulis aspirasi Anda</Label>
               <Textarea
                 id="aspirasi"
                 placeholder="Contoh: aku mw makan siang gratis"

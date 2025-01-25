@@ -63,6 +63,11 @@ export default {
           "100%": { transform: "translateX(0%)" },
         },
       },
+      fontFamily: {
+        sans: ["Public Sans", "sans-serif"],
+        lexend: ["Lexend", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [tailwindAnimate],
