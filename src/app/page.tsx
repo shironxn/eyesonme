@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <div className="py-12 md:py-24 bg-bg overflow-x-hidden">
+      <section className="py-12 md:py-24 bg-bg overflow-x-hidden">
         <div
           className="container mx-auto flex flex-col-reverse lg:flex-row justify-between items-center gap-8 md:gap-16"
           data-aos="zoom-out"
@@ -106,15 +106,15 @@ export default function Home() {
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Marquee Section */}
-      <div>
+      <section>
         <Marquee items={welcomes} />
-      </div>
+      </section>
 
       {/* Tentang Kami Section */}
-      <div
+      <section
         className="bg-main text-white bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] 
   dark:bg-[linear-gradient(to_right,#00000030_1px,transparent_1px),linear-gradient(to_bottom,#00000030_1px,transparent_1px)] 
   bg-[size:70px_70px] pb-12 border-b-2 border-black md:gap-16 py-12 md:py-24"
@@ -169,10 +169,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Visi Misi Section */}
-      <div
+      <section
         className="py-12 md:py-24 bg-secondary rounded-b-[48px] md:rounded-b-[96px] relative"
         id="visi-misi"
       >
@@ -233,10 +233,10 @@ export default function Home() {
           height={100}
           className="hidden lg:block absolute bottom-8 right-0 -translate-x-10 -translate-y-8"
         />
-      </div>
+      </section>
 
       {/* Berita Terbaru */}
-      <div className="py-12 md:py-24">
+      <section className="py-12 md:py-24">
         <div className="container mx-auto space-y-12">
           <div className="text-center" data-aos="fade-up">
             <h2>Berita Terbaru</h2>
@@ -279,10 +279,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Aspirasi Section */}
-      <div className="py-12 md:py-24 bg-secondary rounded-t-[48px] md:rounded-t-[96px]">
+      <section className="py-12 md:py-24 bg-secondary rounded-t-[48px] md:rounded-t-[96px]">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
           <div className="space-y-8">
             <div className="text-center md:text-left" data-aos="fade-up">
@@ -316,7 +316,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
