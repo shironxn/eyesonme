@@ -7,10 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import * as motion from "motion/react-client";
+import { FormAspirasi } from "@/components/beranda/aspirasi";
 
 const welcomes = [
   "welcome",
@@ -295,12 +294,8 @@ export default function Home() {
                 height={200}
               />
             </div>
-            <div className="space-y-4" data-aos="fade-up">
-              <Textarea
-                id="aspirasi"
-                placeholder="Contoh: aku mw makan siang gratis"
-              />
-              <Button>Kirim</Button>
+            <div data-aos="fade-up">
+              <FormAspirasi />
             </div>
           </div>
 
