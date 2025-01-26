@@ -8,7 +8,7 @@ export async function createAspirasi(message: string) {
     const dbRef = ref(database, "aspirasi");
 
     const response = await push(dbRef, {
-      message,
+      message: message.trim(),
       created_at: serverTimestamp(),
     });
 

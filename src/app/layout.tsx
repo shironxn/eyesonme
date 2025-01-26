@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/nav/navbar";
 import { Footer } from "@/components/footer";
 import AOSComponent from "@/hooks/aos";
+import { Toaster } from "@/components/ui/toaster";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
         <AOSComponent>
           <Navbar />
           {children}
+          <Toaster />
           <Footer />
         </AOSComponent>
       </body>
