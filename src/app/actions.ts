@@ -23,7 +23,7 @@ export async function createAspirasi(message: string): Promise<Response> {
 
     await push(dbRef, {
       message: message.trim(),
-      created_at: serverTimestamp(),
+      timestamp: serverTimestamp(),
     });
 
     return {
