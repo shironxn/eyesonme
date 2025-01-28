@@ -79,7 +79,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="py-12 md:py-24 bg-bg overflow-x-hidden">
         <div
-          className="container mx-auto flex flex-col-reverse lg:flex-row justify-between items-center gap-8 md:gap-16"
+          className="container flex flex-col-reverse lg:flex-row justify-between items-center gap-8 md:gap-16"
           data-aos="zoom-out"
         >
           <div className="space-y-6 text-center lg:text-left">
@@ -115,7 +115,7 @@ export default function Home() {
   dark:bg-[linear-gradient(to_right,#00000030_1px,transparent_1px),linear-gradient(to_bottom,#00000030_1px,transparent_1px)] 
   bg-[size:70px_70px] pb-12 border-b-2 border-black md:gap-16 py-12 md:py-24"
       >
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="container grid grid-cols-1 md:grid-cols-2 gap-12">
           <div
             className="flex flex-col justify-center text-center md:items-start md:text-left"
             data-aos="fade-up"
@@ -172,7 +172,7 @@ export default function Home() {
         className="py-12 md:py-24 bg-secondary rounded-b-[48px] md:rounded-b-[96px] relative"
         id="visi-misi"
       >
-        <div className="container mx-auto space-y-12 z-10 relative">
+        <div className="container space-y-12 z-10 relative">
           <motion.div
             className="flex flex-col-reverse md:flex-row gap-4 md:gap-12 items-center"
             data-aos="fade-up"
@@ -234,7 +234,7 @@ export default function Home() {
 
       {/* Berita Terbaru */}
       <section className="py-12 md:py-24">
-        <div className="container mx-auto space-y-12">
+        <div className="container space-y-12">
           <div className="text-center" data-aos="fade-up">
             <h2>Berita Terbaru</h2>
             <p>
@@ -280,7 +280,7 @@ export default function Home() {
 
       {/* Aspirasi Section */}
       <section className="py-12 md:py-24 bg-secondary rounded-t-[48px] md:rounded-t-[96px]">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
+        <div className="container grid grid-cols-1 md:grid-cols-2 items-center">
           <div className="space-y-8">
             <div className="text-center md:text-left" data-aos="fade-up">
               <h2>Aspirasi</h2>
