@@ -21,13 +21,19 @@ export function FormAspirasi() {
         return;
       }
 
-      await createAspirasi(message);
-      setMessage("");
+      const response = await createAspirasi(message);
 
-      toast({
-        title: "Aspirasi berhasil dikirim",
-        description: "Terima kasih atas masukannya!",
-      });
+      if (response) {
+        toast({
+          title: response.message,
+          description: response.details,
+          variant: response.success ? "default" : "destructive",
+        });
+      }
+
+      if (response.success) {
+        setMessage("");
+      }
     });
   }
 
