@@ -1,7 +1,7 @@
 "use client";
 
-import { MobileNavbar } from "@/components/nav/mobile-navbar";
 import { DesktopNavbar } from "@/components/nav/desktop-navbar";
+import { MobileNavbar } from "@/components/nav/mobile-navbar";
 import Link from "next/link";
 
 const links: { name: string; href: string }[] = [

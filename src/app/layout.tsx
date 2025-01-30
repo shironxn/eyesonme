@@ -23,8 +23,22 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Eyes On Me",
-  description: "Official Website OSIS/MPK SMAN 48 Jakarta.",
+  title: "Harsanala Xayasadha - MPK-OSIS SMA Negeri 48 Jakarta",
+  description:
+    "MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025 - Wadah pengembangan karakter, kreativitas, dan kepemimpinan siswa.",
+  openGraph: {
+    title: "Harsanala Xayasadha - MPK-OSIS SMA Negeri 48 Jakarta",
+    description:
+      "MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025 - Wadah pengembangan karakter, kreativitas, dan kepemimpinan siswa.",
+    images: [
+      {
+        url: "/image1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Harsanala Xayasadha",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

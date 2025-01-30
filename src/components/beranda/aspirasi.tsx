@@ -1,11 +1,11 @@
 "use client";
 
+import { createAspirasi } from "@/app/actions";
+import { useToast } from "@/hooks/use-toast";
+import { Loader2Icon } from "lucide-react";
+import { useState, useTransition } from "react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
-import { useState, useTransition } from "react";
-import { createAspirasi } from "@/app/actions";
-import { Loader2Icon } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 export function FormAspirasi() {
   const [message, setMessage] = useState("");
