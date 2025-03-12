@@ -13,7 +13,7 @@ const links: { name: string; href: string }[] = [
 
 export function Navbar() {
   return (
-    <div className="py-4 md:py-8 bg-bw">
+    <nav className="py-4 md:py-8 bg-bw navbar">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           href="/"
@@ -24,6 +24,6 @@ export function Navbar() {
         <MobileNavbar links={links} />
         <DesktopNavbar links={links} />
       </div>
-    </div>
+    </nav>
   );
 }

@@ -12,7 +12,7 @@
   --bw: #f7f3ff;
   --blank: #000000;
   --border: #11001c;
-  --text: #11001c;
+  --text: #fffffe;
   --mtext: #11001c;
   --ring: #ffc700;
   --ring-offset: #ffffff;
@@ -56,14 +56,19 @@ p {
   line-height: 1.6;
 }
 
+small {
+  @apply text-xs font-medium leading-none;
+  font-family: var(--font-poppins);
+}
+
 @layer base {
-  a {
+  .navbar a {
     text-decoration: none;
     color: inherit;
     position: relative;
   }
 
-  a::after {
+  .navbar a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -74,8 +79,8 @@ p {
     transition: width 0.3s ease-in-out;
   }
 
-  a:hover::after,
-  a:focus::after {
+  .navbar a:hover::after,
+  .navbar a:focus::after {
     width: 100%;
   }
 }
