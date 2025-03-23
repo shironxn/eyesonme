@@ -43,7 +43,10 @@ export default async function Page({
   return (
     <div className="container space-y-2 py-12 md:py-24">
       <header className="space-y-3">
-        <Badge>{news.data.category}</Badge>
+        <Badge>
+          {news.data.category.charAt(0).toUpperCase() +
+            news.data.category.slice(1)}
+        </Badge>
         <h1>{news.data.title}</h1>
       </header>
 
