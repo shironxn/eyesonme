@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BerandaCTA } from "@/components/beranda/cta";
+import { HomeCTA } from "@/components/beranda/cta";
 
 export default function HeroSection() {
   return (
@@ -11,7 +11,7 @@ export default function HeroSection() {
             <p>MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025</p>
           </div>
           <div className="flex justify-center lg:justify-start gap-4">
-            <BerandaCTA />
+            <HomeCTA />
           </div>
         </div>
         <div className="flex-1 flex justify-center lg:justify-end w-1/2">

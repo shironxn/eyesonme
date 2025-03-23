@@ -3,7 +3,7 @@ import NotFound from "@/app/not-found";
 import { CardNews } from "@/components/news/card";
 import * as motion from "motion/react-client";
 
-export default async function BeritaSection() {
+export default async function NewsSection() {
   const news = await getNews(3);
   if (!news.data) NotFound();
 

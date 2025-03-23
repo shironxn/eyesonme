@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function TentangKamiSection() {
+export default function AboutSection() {
   return (
     <section
       className="bg-secondary text-white bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] 

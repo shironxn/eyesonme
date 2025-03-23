@@ -7,7 +7,7 @@ import { useState, useTransition } from "react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 
-export function FormAspirasi() {
+export function FormAspiration() {
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
 

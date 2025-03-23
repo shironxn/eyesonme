@@ -1,8 +1,8 @@
-import AspirasiSection from "@/components/beranda/sections/aspirasi";
-import BeritaSection from "@/components/beranda/sections/berita";
+import AboutSection from "@/components/beranda/sections/about";
+import AspirationSection from "@/components/beranda/sections/aspiration";
 import HeroSection from "@/components/beranda/sections/hero";
 import MarqueeSection from "@/components/beranda/sections/marquee";
-import TentangKamiSection from "@/components/beranda/sections/tentang-kami";
+import NewsSection from "@/components/beranda/sections/news";
 import VisiMisiSection from "@/components/beranda/sections/visi-misi";
 
 export default function Home() {
@@ -10,10 +10,10 @@ export default function Home() {
     <main>
       <HeroSection />
       <MarqueeSection />
-      <TentangKamiSection />
+      <AboutSection />
       <VisiMisiSection />
-      <BeritaSection />
-      <AspirasiSection />
+      <NewsSection />
+      <AspirationSection />
     </main>
   );
 }

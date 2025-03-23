@@ -1,7 +1,7 @@
-import { FormAspirasi } from "@/components/beranda/aspirasi";
+import { FormAspiration } from "@/components/beranda/aspiration";
 import Image from "next/image";
 
-export default function AspirasiSection() {
+export default function AspirationSection() {
   return (
     <section className="py-12 md:py-24 bg-main rounded-t-[48px] md:rounded-t-[96px]">
       <div className="container grid grid-cols-1 md:grid-cols-2 items-center">
@@ -18,7 +18,7 @@ export default function AspirasiSection() {
               height={200}
             />
           </div>
-          <FormAspirasi />
+          <FormAspiration />
         </div>
         <div className="hidden md:flex justify-center">
           <Image
