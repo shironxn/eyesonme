@@ -6,11 +6,13 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
+  getDoc,
   getDocs,
-  increment,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
@@ -37,7 +39,6 @@ export async function createComment(data: Comment) {
       name: data.name,
       avatar_url: data.avatar_url,
       content: data.content.trim(),
-      likes: data.likes,
       timestamp: serverTimestamp(),
     });
 
@@ -63,12 +64,25 @@ export async function getComments(newsId: string) {
     );
     const snapshot = await getDocs(q);
 
+    const data = await Promise.all(
+      snapshot.docs.map(async (item) => {
+        const likes = await getCountFromServer(
+          collection(firestore, "news", newsId, "comments", item.id, "likes"),
+        );
+
+        return {
+          ...item.data(),
+          id: item.id,
+          news_id: newsId,
+          likes: likes.data().count,
+        };
+      }),
+    );
+
     return {
       success: true,
       message: "Komentar berhasil diambil",
-      data: snapshot.docs.map((doc) => {
-        return { ...doc.data(), id: doc.id, news_id: newsId };
-      }),
+      data,
     };
   } catch (error) {
     console.error(error);
@@ -126,10 +140,37 @@ export async function deleteComment(newsId: string, commentId: string) {
   }
 }
 
-export async function likeComment(newsId: string, commentId: string) {
+export async function likeComment(
+  newsId: string,
+  commentId: string,
+  userId: string,
+) {
   try {
-    const docRef = doc(firestore, "news", newsId, "comments", commentId);
-    await updateDoc(docRef, { likes: increment(1) });
+    const docRef = doc(
+      firestore,
+      "news",
+      newsId,
+      "comments",
+      commentId,
+      "likes",
+      userId,
+    );
+
+    const like = await getDoc(docRef);
+    if (like.exists()) {
+      await deleteDoc(docRef);
+
+      revalidatePath("/berita");
+      return {
+        success: true,
+        message: "Komentar berhasil dihapus like",
+      };
+    }
+
+    await setDoc(docRef, {
+      user_id: userId,
+      timestamp: serverTimestamp(),
+    });
 
     revalidatePath("/berita");
     return {
