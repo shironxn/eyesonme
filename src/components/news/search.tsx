@@ -19,7 +19,7 @@ export function SearchNews() {
     if (searchValue === "") {
       params.delete("search");
     } else {
-      params.set("search", searchValue);
+      params.set("search", searchValue.toLowerCase());
     }
 
     replace(`${pathname}?${params.toString()}`);

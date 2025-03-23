@@ -27,8 +27,8 @@ export default async function News(props: {
 
   const filteredNews = news.data?.filter((item) => {
     return (
-      item.title.toLowerCase().includes(search) &&
-      (filters.length === 0 || filters.includes(item.category))
+      item.title.toLowerCase().includes(search.toLowerCase()) &&
+      (filters.length === 0 || filters.includes(item.category.toLowerCase()))
     );
   });
 
