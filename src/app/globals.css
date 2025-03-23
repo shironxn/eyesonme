@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --main: #2c1b47;
-  --secondary: #ffc700;
+  --main: #ffc700;
+  --secondary: #2c1b47;
   --accent: #a5e22a;
 
   --overlay: rgba(0, 0, 0, 0.8);
@@ -12,8 +12,9 @@
   --bw: #f7f3ff;
   --blank: #000000;
   --border: #11001c;
-  --text: #fffffe;
+  --text: #11001c;
   --mtext: #11001c;
+  --muted: #6b7280;
   --ring: #ffc700;
   --ring-offset: #ffffff;
 
@@ -27,13 +28,13 @@
 }
 
 h1 {
-  @apply scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-6xl;
+  @apply scroll-m-20 text-4xl lg:text-5xl font-extrabold tracking-tight;
   font-family: var(--font-public-sans);
   line-height: 1.2;
 }
 
 h2 {
-  @apply scroll-m-20 text-4xl font-semibold tracking-tight pb-2 transition-colors first:mt-0;
+  @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
   font-family: var(--font-lexend);
   line-height: 1.3;
 }

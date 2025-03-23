@@ -6,7 +6,7 @@ export default function HeroSection() {
     <section className="py-12 md:py-24 bg-bg overflow-x-hidden">
       <div className="container flex flex-col-reverse lg:flex-row justify-between items-center gap-8 md:gap-16">
         <div className="space-y-6 text-center lg:text-left">
-          <div className="space-y-4 text-main">
+          <div className="space-y-4">
             <h1>Harsanala Xayasadha</h1>
             <p>MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025</p>
           </div>

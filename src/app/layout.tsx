@@ -38,6 +38,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  metadataBase: new URL("https://eyesonme.vercel.app"),
 };
 
 export default function RootLayout({

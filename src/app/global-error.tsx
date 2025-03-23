@@ -25,7 +25,7 @@ export default function GlobalError({
   return (
     <html lang="en">
       <body>
-        <div className="container flex items-center">
+        <div className="container flex items-center min-h-screen justify-center">
           <Card>
             <CardHeader>
               <div className="flex items-center space-x-2">

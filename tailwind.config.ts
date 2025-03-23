@@ -27,6 +27,7 @@ export default {
         blank: "var(--blank)",
         text: "var(--text)",
         mtext: "var(--mtext)",
+        muted: "var(--muted)",
         border: "var(--border)",
         ring: "var(--ring)",
         ringOffset: "var(--ring-offset)",

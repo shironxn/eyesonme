@@ -1,6 +1,6 @@
 "use client";
 
-import { createAspirasi } from "@/app/actions";
+import { createAspiration } from "@/app/actions/aspiration";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2Icon } from "lucide-react";
 import { useState, useTransition } from "react";
@@ -21,12 +21,12 @@ export function FormAspirasi() {
         return;
       }
 
-      const response = await createAspirasi(message);
+      const response = await createAspiration(message);
 
       if (response) {
         toast({
-          title: response.message,
-          description: response.details,
+          title: "Notifikasi",
+          description: response.message,
           variant: response.success ? "default" : "destructive",
         });
       }

@@ -9,10 +9,7 @@ export function BerandaCTA() {
 
   return (
     <>
-      <Button
-        onClick={() => router.push("/program-kerja")}
-        className="bg-secondary"
-      >
+      <Button onClick={() => router.push("/program-kerja")} className="bg-main">
         <ClipboardListIcon />
         Program Kerja
       </Button>

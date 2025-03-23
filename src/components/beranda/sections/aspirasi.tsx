@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function AspirasiSection() {
   return (
-    <section className="py-12 md:py-24 bg-secondary rounded-t-[48px] md:rounded-t-[96px]">
+    <section className="py-12 md:py-24 bg-main rounded-t-[48px] md:rounded-t-[96px]">
       <div className="container grid grid-cols-1 md:grid-cols-2 items-center">
         <div className="space-y-8">
           <div className="text-center md:text-left">

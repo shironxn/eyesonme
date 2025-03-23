@@ -23,7 +23,7 @@ const misi = [
 export default function VisiMisiSection() {
   return (
     <section
-      className="py-12 md:py-24 bg-secondary rounded-b-[48px] md:rounded-b-[96px] relative"
+      className="py-12 md:py-24 bg-main rounded-b-[48px] md:rounded-b-[96px] relative"
       id="visi-misi"
     >
       <div className="container space-y-12 z-10 relative">

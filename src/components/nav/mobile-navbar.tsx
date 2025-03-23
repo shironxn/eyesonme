@@ -36,7 +36,7 @@ export function MobileNavbar({
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-xl after:content-none hover:after:content-none focus:after:content-none hover:text-secondary"
+                  className="text-xl after:content-none hover:after:content-none focus:after:content-none hover:text-main"
                 >
                   {item.name}
                 </Link>

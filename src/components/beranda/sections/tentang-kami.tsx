@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function TentangKamiSection() {
   return (
     <section
-      className="bg-main text-white bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] 
+      className="bg-secondary text-white bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] 
     dark:bg-[linear-gradient(to_right,#00000030_1px,transparent_1px),linear-gradient(to_bottom,#00000030_1px,transparent_1px)] 
     bg-[size:70px_70px] pb-12 border-b-2 border-black md:gap-16 py-12 md:py-24"
     >
