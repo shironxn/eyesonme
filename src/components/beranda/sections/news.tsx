@@ -1,7 +1,6 @@
 import { getNews } from "@/app/actions/news";
 import NotFound from "@/app/not-found";
 import { CardNews } from "@/components/news/card";
-import * as motion from "motion/react-client";
 
 export default async function NewsSection() {
   const news = await getNews(3);
@@ -17,17 +16,15 @@ export default async function NewsSection() {
             Jakarta.
           </p>
         </div>
-        <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 md:overflow-visible gap-4 no-scrollbar">
+        <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 snap-x snap-mandatory md:overflow-visible no-scrollbar">
           {Array.isArray(news.data) &&
-            news.data.map((item) => (
-              <motion.div
-                key={item.id}
-                className="snap-center shrink-0 w-full md:w-auto p-2"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+            news.data.map((item, index) => (
+              <div
+                key={index}
+                className={`snap-center shrink-0 w-full md:w-auto p-2 ${index === 2 && "md:col-span-2 md:mx-auto lg:col-span-1 lg:mx-0"}`}
               >
                 <CardNews data={JSON.parse(JSON.stringify(item))} />
-              </motion.div>
+              </div>
             ))}
         </div>
       </div>
