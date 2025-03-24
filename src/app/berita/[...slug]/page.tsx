@@ -64,7 +64,7 @@ export default async function Page({
 
         <div className="flex items-center gap-2">
           <LikeNews newsId={news.data.id!} likes={news.data.likes} />
-          <ShareNews />
+          <ShareNews title={news.data.title} />
         </div>
       </div>
 

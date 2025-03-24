@@ -2,6 +2,16 @@
 
 import { likeNews } from "@/app/actions/news";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 import { auth, firestore } from "@/lib/firebase";
 import {
   GoogleAuthProvider,
@@ -10,6 +20,8 @@ import {
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { HeartIcon, Share2Icon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const provider = new GoogleAuthProvider();
@@ -64,10 +76,78 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
   );
 }
 
-export function ShareNews() {
+export function ShareNews({ title }: { title: string }) {
+  const { toast } = useToast();
+  const url = window.location.href;
+  const text = encodeURIComponent(`
+*${title}*
+
+Klik link berikut untuk membaca artikel ini:\n`);
+
+  const links = [
+    {
+      name: "Whatsapp",
+      icon: "/icons/whatsapp.svg",
+      href: `https://wa.me/?text=${text}%20${url}`,
+    },
+    {
+      name: "X",
+      icon: "/icons/x.svg",
+      href: `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
+    },
+    {
+      name: "Facebook",
+      icon: "/icons/facebook.svg",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    },
+    {
+      name: "Telegram",
+      icon: "/icons/telegram.svg",
+      href: `https://t.me/share/url?url=${url}&text=${text}`,
+    },
+  ];
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(url);
+
+    toast({
+      title: "Link berhasil disalin",
+      description: "Silahkan kirimkan link ke teman-teman",
+    });
+  };
+
   return (
-    <Button variant={"neutral"}>
-      <Share2Icon /> Bagikan
-    </Button>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="neutral">
+          <Share2Icon /> Bagikan
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Bagikan Artikel</DialogTitle>
+          <DialogDescription>{title}</DialogDescription>
+        </DialogHeader>
+
+        <DialogFooter className="flex flex-row justify-center sm:justify-start gap-4">
+          {links.map((item, index) => (
+            <Link key={index} href={item.href} target="_blank">
+              <Button variant="ghost" size="icon">
+                <Image src={item.icon} alt={item.name} width={24} height={24} />
+              </Button>
+            </Link>
+          ))}
+          <Button variant="ghost" size="icon">
+            <Image
+              src="/icons/copy.svg"
+              alt="Copy Link"
+              width={24}
+              height={24}
+              onClick={handleCopy}
+            />
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
