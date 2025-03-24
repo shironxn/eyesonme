@@ -106,6 +106,7 @@ export async function updateComment(
 
     await updateDoc(docRef, { content });
 
+    revalidatePath("/berita");
     return {
       success: true,
       message: "Komentar berhasil diubah.",
@@ -127,8 +128,9 @@ export async function deleteComment(newsId: string, commentId: string) {
     );
     await deleteDoc(docRef);
 
+    revalidatePath("/berita");
     return {
-      success: false,
+      success: true,
       message: "Komentar berhasil dihapus",
     };
   } catch (error) {
