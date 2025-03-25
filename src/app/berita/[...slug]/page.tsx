@@ -75,7 +75,7 @@ export default async function Page({
             alt={`Gambar ${news.data.title}`}
             width={1200}
             height={675}
-            className="w-full aspect-video rounded-md object-cover"
+            className="w-full aspect-video rounded-base object-cover"
             priority
           />
         </figure>

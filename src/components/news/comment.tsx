@@ -183,7 +183,7 @@ export function DisplayComment({ data }: { data: Comment }) {
   };
 
   return (
-    <div className="relative grid grid-cols-[auto,1fr] gap-4 rounded-base border-2 border-border bg-bg p-4 shadow-shadow transition hover:shadow-none">
+    <div className="relative grid grid-cols-[auto,1fr] gap-4 rounded-base border-2 border-border bg-bg p-4 shadow-shadow transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none">
       <Avatar>
         <AvatarImage src={data.avatar_url} alt={data.name} />
         <AvatarFallback>{data.name.slice(0, 2).toUpperCase()}</AvatarFallback>
