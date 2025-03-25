@@ -1,4 +1,4 @@
-import { FormAspiration } from "@/components/beranda/aspiration";
+import { FormAspiration } from "@/components/home/aspiration";
 import Image from "next/image";
 
 export default function AspirationSection() {

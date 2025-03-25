@@ -1,35 +1,26 @@
 import { CardNews } from "@/components/news/card";
 import { FilterNews } from "@/components/news/filter";
+import { NewsPagination } from "@/components/news/pagination";
 import { SearchNews } from "@/components/news/search";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { getNews } from "../actions/news";
-import NotFound from "../not-found";
 
 export default async function News(props: {
   searchParams?: Promise<{
     search?: string;
     filter?: string[];
+    page?: string;
   }>;
 }) {
-  const news = await getNews();
-  if (!news.data) NotFound();
-
   const searchParams = await props.searchParams;
   const search = searchParams?.search || "";
   const filters = searchParams?.filter || [];
+  const page = Number(searchParams?.page || 1);
 
-  const filteredNews = news.data?.filter((item) => {
-    return (
-      item.title.toLowerCase().includes(search.toLowerCase()) &&
-      (filters.length === 0 || filters.includes(item.category.toLowerCase()))
-    );
+  const news = await getNews({
+    limitNews: 3,
+    search,
+    filters,
+    page,
   });
 
   return (
@@ -51,33 +42,14 @@ export default async function News(props: {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-          {Array.isArray(filteredNews) &&
-            filteredNews.map((item, index) => (
+          {Array.isArray(news.data) &&
+            news.data.map((item, index) => (
               <CardNews key={index} data={JSON.parse(JSON.stringify(item))} />
             ))}
         </div>
-
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="hidden md:inline-block">
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        {news.data && news.totalPages > 1 && (
+          <NewsPagination totalPages={news.totalPages} />
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HomeCTA } from "@/components/beranda/cta";
+import { HomeCTA } from "@/components/home/cta";
 
 export default function HeroSection() {
   return (

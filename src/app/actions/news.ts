@@ -12,8 +12,11 @@ import {
   limit,
   orderBy,
   query,
+  QueryConstraint,
   serverTimestamp,
   setDoc,
+  startAfter,
+  where,
 } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 
@@ -59,14 +62,66 @@ export async function createNews(data: News) {
   }
 }
 
-export async function getNews(limitNews?: number) {
+export async function getNews({
+  limitNews = 6,
+  search,
+  filters,
+  page = 1,
+}: {
+  limitNews?: number;
+  search?: string;
+  filters?: string[];
+  page?: number;
+}) {
   try {
-    const q = query(
+    const constraints: QueryConstraint[] = [orderBy("timestamp", "desc")];
+
+    if (search) {
+      const searchTerm = search.toLowerCase();
+      constraints.push(
+        where("title_lower", ">=", searchTerm),
+        where("title_lower", "<=", searchTerm + "\uf8ff"),
+      );
+    }
+
+    if (filters && filters.length > 0) {
+      constraints.push(
+        where(
+          "category",
+          "in",
+          typeof filters === "string" ? [filters] : filters,
+        ),
+      );
+    }
+
+    let q = query(
       collection(firestore, "news"),
-      orderBy("timestamp", "desc"),
-      ...(limitNews ? [limit(limitNews)] : []),
+      ...constraints,
+      limit(limitNews),
     );
+
+    if (page > 1) {
+      const prevQuery = query(
+        collection(firestore, "news"),
+        ...constraints,
+        limit(limitNews * (page - 1)),
+      );
+      const prevSnapshot = await getDocs(prevQuery);
+      const lastVisible = prevSnapshot.docs[prevSnapshot.docs.length - 1];
+
+      q = query(
+        collection(firestore, "news"),
+        ...constraints,
+        startAfter(lastVisible),
+        limit(limitNews),
+      );
+    }
+
     const snapshot = await getDocs(q);
+
+    const countQuery = query(collection(firestore, "news"), ...constraints);
+    const countSnapshot = await getCountFromServer(countQuery);
+    const totalDocuments = countSnapshot.data().count;
 
     const data = await Promise.all(
       snapshot.docs.map(async (item) => {
@@ -93,6 +148,7 @@ export async function getNews(limitNews?: number) {
       success: true,
       message: "Berita berhasil diambil.",
       data,
+      totalPages: Math.ceil(totalDocuments / limitNews),
     };
   } catch (error) {
     console.error(error);

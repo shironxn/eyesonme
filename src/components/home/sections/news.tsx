@@ -3,7 +3,9 @@ import NotFound from "@/app/not-found";
 import { CardNews } from "@/components/news/card";
 
 export default async function NewsSection() {
-  const news = await getNews(3);
+  const news = await getNews({
+    limitNews: 3,
+  });
   if (!news.data) NotFound();
 
   return (

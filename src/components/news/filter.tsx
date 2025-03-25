@@ -11,26 +11,28 @@ export function FilterNews() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [filters, setFilters] = useState<string[]>([]);
+  const [filters, setFilters] = useState<string[]>(
+    searchParams.getAll("filter") || [],
+  );
+
+  const toggleFilter = (item: string) => {
+    setFilters((prev) =>
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item],
+    );
+  };
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
+
+    if (filters.length !== searchParams.getAll("filter").length) {
+      params.delete("page");
+    }
 
     params.delete("filter");
     filters.forEach((item) => params.append("filter", item));
 
     router.replace(`${pathname}?${params.toString()}`);
   }, [filters, pathname, router, searchParams]);
-
-  function toggleFilter(item: string) {
-    setFilters((prev) => {
-      if (prev.includes(item)) {
-        return prev.filter((i) => i !== item);
-      } else {
-        return [...prev, item];
-      }
-    });
-  }
 
   return (
     <div className="flex flex-wrap gap-4">

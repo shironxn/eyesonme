@@ -16,6 +16,8 @@ export function SearchNews() {
     const params = new URLSearchParams(searchParams);
     const searchValue = e.currentTarget.search.value.trim();
 
+    params.delete("page");
+
     if (searchValue === "") {
       params.delete("search");
     } else {
