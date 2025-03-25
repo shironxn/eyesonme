@@ -54,7 +54,7 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
     checkLike();
   }, [newsId, user]);
 
-  async function handleLike() {
+  const handleLike = async () => {
     const user = auth.currentUser;
     if (!user) {
       try {
@@ -67,7 +67,7 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
       await likeNews(newsId, user.uid);
       setIsLiked(!isLiked);
     }
-  }
+  };
 
   return (
     <Button onClick={() => handleLike()}>
