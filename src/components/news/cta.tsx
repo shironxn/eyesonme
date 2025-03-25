@@ -22,6 +22,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { HeartIcon, Share2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const provider = new GoogleAuthProvider();
@@ -77,12 +78,14 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
 }
 
 export function ShareNews({ title }: { title: string }) {
+  const path = usePathname();
   const { toast } = useToast();
-  const url = window.location.href;
   const text = encodeURIComponent(`
 *${title}*
 
 Klik link berikut untuk membaca artikel ini:\n`);
+
+  const [url, setUrl] = useState("");
 
   const links = [
     {
@@ -106,6 +109,11 @@ Klik link berikut untuk membaca artikel ini:\n`);
       href: `https://t.me/share/url?url=${url}&text=${text}`,
     },
   ];
+
+  useEffect(() => {
+    const fullUrl = `${window.location.origin}${path}`;
+    setUrl(fullUrl);
+  }, [path]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
