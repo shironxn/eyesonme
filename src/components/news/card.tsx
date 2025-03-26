@@ -22,7 +22,7 @@ export function CardNews({ data }: { data: News }) {
           alt={data.title}
           width={500}
           height={500}
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover rounded-base"
         />
         <div>
           <Badge>
