@@ -1,11 +1,11 @@
 import { getComments } from "@/app/actions/comment";
 import { getNewsById } from "@/app/actions/news";
+import { NewsCarousel } from "@/components/news/carousel";
 import { CommentForm, DisplayComment } from "@/components/news/comment";
 import { LikeNews, ShareNews } from "@/components/news/cta";
 import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, MessageSquareIcon, UserIcon } from "lucide-react";
 import { Metadata } from "next";
-import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 
 export async function generateMetadata({
@@ -70,14 +70,7 @@ export default async function Page({
 
       <article className="space-y-8" aria-labelledby="article-title">
         <figure className="my-8">
-          <Image
-            src={news.data.image_url}
-            alt={`Gambar ${news.data.title}`}
-            width={1200}
-            height={675}
-            className="w-full aspect-video rounded-base object-cover"
-            priority
-          />
+          <NewsCarousel images={news.data.images} />
         </figure>
 
         <div className="text-muted font-medium">

@@ -18,7 +18,7 @@ export function CardNews({ data }: { data: News }) {
     <Card>
       <CardHeader>
         <Image
-          src={data.image_url}
+          src={data.images[0]}
           alt={data.title}
           width={500}
           height={500}

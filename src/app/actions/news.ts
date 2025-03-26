@@ -23,11 +23,11 @@ import { revalidatePath } from "next/cache";
 export interface News {
   id?: string;
   title: string;
-  author: string;
   content: string;
-  image_url: string;
-  likes: number;
+  images: string[];
+  author: string;
   category: string;
+  likes: number;
   timestamp?: string;
 }
 
