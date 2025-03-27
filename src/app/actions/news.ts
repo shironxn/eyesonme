@@ -36,7 +36,8 @@ export async function createNews(data: News) {
     if (!data.title.trim() || !data.author.trim() || !data.content.trim()) {
       return {
         success: false,
-        message: "Gagal membuat berita",
+        message: "Oops! Berita tidak boleh kosong.",
+        details: "Yuk, tulis sesuatu dulu sebelum mengirim.",
       };
     }
 
@@ -51,13 +52,15 @@ export async function createNews(data: News) {
     revalidatePath("/berita");
     return {
       success: true,
-      message: "Berita berhasil dibuat.",
+      message: "Berita berhasil dibuat!",
+      details: "Beritamu sudah masuk dan bisa dilihat sekarang.",
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal membuat berita",
+      message: "Terjadi kesalahan saat membuat berita.",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }
@@ -145,17 +148,14 @@ export async function getNews({
     );
 
     return {
-      success: true,
-      message: "Berita berhasil diambil.",
       data,
       totalPages: Math.ceil(totalDocuments / limitNews),
     };
   } catch (error) {
     console.error(error);
-    return {
-      success: false,
-      message: "Gagal mengambil berita",
-    };
+    throw new Error(
+      "Terjadi kesalahan saat mengambil berita. Silakan coba lagi nanti.",
+    );
   }
 }
 
@@ -176,8 +176,6 @@ export async function getNewsById(id: string) {
     );
 
     return {
-      success: true,
-      message: "Berita berhasil diambil",
       data: {
         ...snapshot.data(),
         id: snapshot.id,
@@ -191,10 +189,9 @@ export async function getNewsById(id: string) {
     };
   } catch (error) {
     console.error(error);
-    return {
-      success: false,
-      message: "Gagal mengambil berita",
-    };
+    throw new Error(
+      "Terjadi kesalahan saat mengambil berita. Silakan coba lagi nanti.",
+    );
   }
 }
 
@@ -209,7 +206,6 @@ export async function likeNews(newsId: string, userId: string) {
       revalidatePath("/berita");
       return {
         success: true,
-        message: "Berita berhasil dihapus like",
       };
     }
 
@@ -221,13 +217,13 @@ export async function likeNews(newsId: string, userId: string) {
     revalidatePath("/berita");
     return {
       success: true,
-      message: "Berita berhasil diberi like",
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal memberi like pada berita",
+      message: "Terjadi kesalahan saat menyukai berita.",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }

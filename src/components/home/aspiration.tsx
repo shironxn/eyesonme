@@ -1,11 +1,11 @@
 "use client";
 
 import { createAspiration } from "@/app/actions/aspiration";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2Icon } from "lucide-react";
 import { useState, useTransition } from "react";
-import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
 
 export function FormAspiration() {
   const [message, setMessage] = useState("");
@@ -17,16 +17,12 @@ export function FormAspiration() {
     e.preventDefault();
 
     startTransition(async () => {
-      if (message.trim() === "") {
-        return;
-      }
-
       const response = await createAspiration(message);
 
       if (response) {
         toast({
-          title: "Notifikasi",
-          description: response.message,
+          title: response.message,
+          description: response.details,
           variant: response.success ? "default" : "destructive",
         });
       }
@@ -42,7 +38,6 @@ export function FormAspiration() {
       <Textarea
         name="message"
         placeholder="Tulis aspirasi kamu di sini"
-        required
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />

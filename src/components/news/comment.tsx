@@ -41,7 +41,7 @@ export function CommentForm({ newsId }: { newsId: string }) {
 
   const { toast } = useToast();
 
-  async function handleSubmit(e: React.FormEvent) {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const user = auth.currentUser;
@@ -70,8 +70,8 @@ export function CommentForm({ newsId }: { newsId: string }) {
       });
 
       toast({
-        title: "Notifikasi",
-        description: res.message,
+        title: res.message,
+        description: res.details,
         variant: res.success ? "default" : "destructive",
       });
 
@@ -79,7 +79,7 @@ export function CommentForm({ newsId }: { newsId: string }) {
         setComment("");
       }
     });
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -98,12 +98,12 @@ export function CommentForm({ newsId }: { newsId: string }) {
 }
 
 export function DisplayComment({ data }: { data: Comment }) {
+  const { toast } = useToast();
+
   const [user, setUser] = useState(auth.currentUser);
   const [comment, setComment] = useState(data.content);
   const [isLiked, setIsLiked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-
-  const { toast } = useToast();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, setUser);
@@ -150,8 +150,8 @@ export function DisplayComment({ data }: { data: Comment }) {
 
       if (!res.success) {
         toast({
-          title: "Notifikasi",
-          description: res.message,
+          title: res.message,
+          description: res.details,
           variant: "destructive",
         });
       }
@@ -164,8 +164,8 @@ export function DisplayComment({ data }: { data: Comment }) {
     const res = await updateComment(data.news_id, data.id!, comment);
 
     toast({
-      title: "Notifikasi",
-      description: res.message,
+      title: res.message,
+      description: res.details,
       variant: res.success ? "default" : "destructive",
     });
 
@@ -176,8 +176,8 @@ export function DisplayComment({ data }: { data: Comment }) {
     const res = await deleteComment(data.news_id, data.id!);
 
     toast({
-      title: "Notifikasi",
-      description: res.message,
+      title: res.message,
+      description: res.details,
       variant: res.success ? "default" : "destructive",
     });
   };
@@ -232,7 +232,11 @@ export function DisplayComment({ data }: { data: Comment }) {
         <div className="absolute right-4 top-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-6 w-6">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-6 w-6 text-muted"
+              >
                 <EllipsisVerticalIcon className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

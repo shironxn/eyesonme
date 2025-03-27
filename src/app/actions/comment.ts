@@ -31,7 +31,11 @@ export interface Comment {
 export async function createComment(data: Comment) {
   try {
     if (!data.news_id.trim() || !data.user_id.trim() || !data.content.trim()) {
-      return { success: false, message: "Gagal mengirim komentar." };
+      return {
+        success: false,
+        message: "Oops! Komentar tidak boleh kosong.",
+        details: "Yuk, tulis sesuatu dulu sebelum mengirim.",
+      };
     }
 
     await addDoc(collection(firestore, "news", data.news_id, "comments"), {
@@ -45,13 +49,15 @@ export async function createComment(data: Comment) {
     revalidatePath("/berita");
     return {
       success: true,
-      message: "Komentar berhasil dikirim.",
+      message: "Komentar berhasil dikirim!",
+      details: "Komentarmu sudah masuk dan bisa dilihat sekarang.",
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal mengirim komentar.",
+      message: "Terjadi kesalahan saat mengirim komentar.",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }
@@ -81,14 +87,14 @@ export async function getComments(newsId: string) {
 
     return {
       success: true,
-      message: "Komentar berhasil diambil",
       data,
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal mengambil komentar.",
+      message: "Terjadi kesalahan saat mengambil komentar",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }
@@ -99,6 +105,14 @@ export async function updateComment(
   content: string,
 ) {
   try {
+    if (!content.trim()) {
+      return {
+        success: false,
+        message: "Oops! Komentar tidak boleh kosong.",
+        details: "Pastikan kamu menulis sesuatu sebelum menyimpan perubahan.",
+      };
+    }
+
     const docRef = doc(
       collection(firestore, "news", newsId, "comments"),
       commentId,
@@ -109,13 +123,15 @@ export async function updateComment(
     revalidatePath("/berita");
     return {
       success: true,
-      message: "Komentar berhasil diubah.",
+      message: "Komentar berhasil diperbarui!",
+      details: "Perubahan sudah tersimpan dan bisa dilihat sekarang.",
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal menghapus komentar.",
+      message: "Terjadi kesalahan saat mengubah komentar.",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }
@@ -131,13 +147,15 @@ export async function deleteComment(newsId: string, commentId: string) {
     revalidatePath("/berita");
     return {
       success: true,
-      message: "Komentar berhasil dihapus",
+      message: "Komentar berhasil dihapus!",
+      details: "Komentarmu sudah terhapus dan tidak bisa dilihat lagi.",
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal menghapus komentar",
+      message: "Terjadi kesalahan saat menghapus komentar.",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }
@@ -165,7 +183,6 @@ export async function likeComment(
       revalidatePath("/berita");
       return {
         success: true,
-        message: "Komentar berhasil dihapus like",
       };
     }
 
@@ -177,13 +194,13 @@ export async function likeComment(
     revalidatePath("/berita");
     return {
       success: true,
-      message: "Komentar berhasil diberi like",
     };
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: "Gagal memberi like pada komentar",
+      message: "Terjadi kesalahan saat memberi like pada komentar.",
+      details: "Silakan coba lagi nanti.",
     };
   }
 }

@@ -3,8 +3,14 @@ import { getNewsById } from "@/app/actions/news";
 import { NewsCarousel } from "@/components/news/carousel";
 import { CommentForm, DisplayComment } from "@/components/news/comment";
 import { LikeNews, ShareNews } from "@/components/news/cta";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, MessageSquareIcon, UserIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  MessageSquareIcon,
+  TriangleAlertIcon,
+  UserIcon,
+} from "lucide-react";
 import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
@@ -33,16 +39,16 @@ export default async function Page({
   const news = await getNewsById(slug[0]);
   if (!news?.data) notFound();
 
+  const comments = await getComments(news.data.id!);
+
   if (!slug[1])
     redirect(
       `/berita/${news.data.id}/${news.data.title.toLowerCase().replace(/ /g, "-")}`,
     );
 
-  const comments = await getComments(news.data.id!);
-
   return (
-    <div className="container space-y-2 py-12 md:py-24">
-      <header className="space-y-3">
+    <div className="container py-12 space-y-8">
+      <header className="space-y-4 pb-4 border-b">
         <Badge>
           {news.data.category.charAt(0).toUpperCase() +
             news.data.category.slice(1)}
@@ -50,7 +56,7 @@ export default async function Page({
         <h1>{news.data.title}</h1>
       </header>
 
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 text-sm border-t py-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-sm text-muted">
         <div className="flex flex-wrap gap-4">
           <span className="flex items-center gap-2">
             <CalendarIcon className="w-4 h-4" />
@@ -61,40 +67,51 @@ export default async function Page({
             {news.data.author}
           </span>
         </div>
-
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <LikeNews newsId={news.data.id!} likes={news.data.likes} />
           <ShareNews title={news.data.title} />
         </div>
       </div>
 
-      <article className="space-y-8" aria-labelledby="article-title">
-        <figure className="my-8">
-          <NewsCarousel images={news.data.images} />
-        </figure>
-
-        <div className="text-muted font-medium">
+      <article className="space-y-8 pb-8 border-b">
+        {news.data.images.length > 0 && (
+          <figure className="my-6">
+            <NewsCarousel images={news.data.images} />
+          </figure>
+        )}
+        <div className="font-medium text-muted">
           <p>{news.data.content}</p>
         </div>
       </article>
 
-      <section aria-labelledby="comments-title" className="pt-16">
-        <h4 id="comments-title" className="mb-6 flex gap-4 items-center">
-          Komentar
-          <MessageSquareIcon />
-        </h4>
+      <section className="pt-8">
+        {comments.success ? (
+          <div className="space-y-12">
+            <div className="flex items-center gap-4">
+              <h4>Komentar</h4>
+              <MessageSquareIcon />
+            </div>
 
-        <CommentForm newsId={news.data.id!} />
+            <CommentForm newsId={news.data.id!} />
 
-        <div className="mt-8 space-y-6">
-          {Array.isArray(comments.data) &&
-            comments.data.map((comment, index) => (
-              <DisplayComment
-                key={index}
-                data={JSON.parse(JSON.stringify(comment))}
-              />
-            ))}
-        </div>
+            <ul className="space-y-4">
+              {Array.isArray(comments.data) &&
+                comments.data.map((comment, index) => (
+                  <li key={index}>
+                    <DisplayComment
+                      data={JSON.parse(JSON.stringify(comment))}
+                    />
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ) : (
+          <Alert variant="destructive">
+            <TriangleAlertIcon className="h-4 w-4" color="white" />
+            <AlertTitle>{comments.message}</AlertTitle>
+            <AlertDescription>{comments.details}</AlertDescription>
+          </Alert>
+        )}
       </section>
     </div>
   );

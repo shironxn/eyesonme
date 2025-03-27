@@ -23,11 +23,13 @@ import { HeartIcon, Share2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const provider = new GoogleAuthProvider();
 
 export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
+  const { toast } = useToast();
+
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState(auth.currentUser);
 
@@ -54,8 +56,7 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
     checkLike();
   }, [newsId, user]);
 
-  const handleLike = async () => {
-    const user = auth.currentUser;
+  const handleLike = useCallback(async () => {
     if (!user) {
       try {
         await signInWithPopup(auth, provider);
@@ -64,10 +65,19 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
         return;
       }
     } else {
-      await likeNews(newsId, user.uid);
-      setIsLiked(!isLiked);
+      const res = await likeNews(newsId, user.uid);
+
+      if (res.success) {
+        setIsLiked(!isLiked);
+      } else {
+        toast({
+          title: res.message,
+          description: res.details,
+          variant: "destructive",
+        });
+      }
     }
-  };
+  }, [newsId, isLiked, user, toast]);
 
   return (
     <Button onClick={() => handleLike()}>
@@ -119,8 +129,8 @@ Klik link berikut untuk membaca artikel ini:\n`);
     navigator.clipboard.writeText(url);
 
     toast({
-      title: "Link berhasil disalin",
-      description: "Silahkan kirimkan link ke teman-teman",
+      title: "Berhasil disalin",
+      description: "Tautan artikel berhasil disalin ke clipboard",
     });
   };
 
