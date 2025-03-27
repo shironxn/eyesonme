@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const links: { name: string; href: string }[] = [
   { name: "Beranda", href: "/" },
-  { name: "Program Kerja", href: "/program-kerja" },
-  { name: "Struktur Organisasi", href: "/struktur-organisasi" },
+  { name: "Program Kerja", href: "/proker" },
+  { name: "Struktur Organisasi", href: "/struktur" },
   { name: "Berita", href: "/berita" },
 ];
 
