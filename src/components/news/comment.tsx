@@ -51,8 +51,8 @@ export function CommentForm({ newsId }: { newsId: string }) {
       } catch (error) {
         console.error(error);
         toast({
-          title: "Notifikasi",
-          description: "Gagal masuk. Coba lagi nanti.",
+          title: "Gagal masuk.",
+          description: "Coba cek koneksi atau ulangi beberapa saat lagi.",
           variant: "destructive",
         });
         return;
@@ -139,8 +139,8 @@ export function DisplayComment({ data }: { data: Comment }) {
       } catch (error) {
         console.error(error);
         toast({
-          title: "Notifikasi",
-          description: "Gagal masuk. Coba lagi nanti.",
+          title: "Gagal masuk.",
+          description: "Coba cek koneksi atau ulangi beberapa saat lagi.",
           variant: "destructive",
         });
         return;

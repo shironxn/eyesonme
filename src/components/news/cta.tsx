@@ -62,6 +62,11 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
         await signInWithPopup(auth, provider);
       } catch (error) {
         console.error(error);
+        toast({
+          title: "Gagal masuk.",
+          description: "Coba cek koneksi atau ulangi beberapa saat lagi.",
+          variant: "destructive",
+        });
         return;
       }
     } else {
