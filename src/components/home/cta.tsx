@@ -9,7 +9,7 @@ export function HomeCTA() {
 
   return (
     <>
-      <Button onClick={() => router.push("/program-kerja")} className="bg-main">
+      <Button onClick={() => router.push("/proker")} className="bg-main">
         <ClipboardListIcon />
         Program Kerja
       </Button>
