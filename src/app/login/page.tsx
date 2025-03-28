@@ -28,7 +28,7 @@ export default function Page() {
             <CardHeader>
               <CardTitle className="text-3xl">Welcome!</CardTitle>
               <CardDescription className="text-base text-muted">
-                Silahkan login menggunakan akun yang kamu miliki.
+                Silakan login menggunakan akun yang kamu miliki.
               </CardDescription>
             </CardHeader>
             <CardContent>
