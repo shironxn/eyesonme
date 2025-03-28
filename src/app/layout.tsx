@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/nav/navbar";
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -41,21 +43,25 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://eyesonme.vercel.app"),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <html lang="en">
-      <body
-        className={`${publicSans.variable} ${lexend.variable} ${poppins.variable} antialiased`}
-      >
-        <Navbar />
-        {children}
-        <Toaster />
-        <Footer />
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en">
+        <body
+          className={`${publicSans.variable} ${lexend.variable} ${poppins.variable} antialiased`}
+        >
+          <Navbar session={session?.user} />
+          {children}
+          <Toaster />
+          <Footer />
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
