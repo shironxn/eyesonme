@@ -24,7 +24,7 @@ export default function Page() {
               />
             </div>
           </div>
-          <div className="md:w-3/5 p-2">
+          <div className="md:w-3/5 md:p-2">
             <CardHeader>
               <CardTitle className="text-3xl">Welcome!</CardTitle>
               <CardDescription className="text-base text-muted">
