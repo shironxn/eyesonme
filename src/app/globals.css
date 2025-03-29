@@ -103,3 +103,11 @@ small {
 body {
   font-family: var(--font-poppins);
 }
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: var(--muted);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

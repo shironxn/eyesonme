@@ -2,6 +2,10 @@ import { CardNews } from "@/components/news/card";
 import { FilterNews } from "@/components/news/filter";
 import { NewsPagination } from "@/components/news/pagination";
 import { SearchNews } from "@/components/news/search";
+import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
+import { PlusIcon } from "lucide-react";
+import Link from "next/link";
 import { getNews } from "../actions/news";
 
 export default async function News(props: {
@@ -23,6 +27,8 @@ export default async function News(props: {
     page,
   });
 
+  const session = await auth();
+
   return (
     <div>
       <div className="bg-secondary text-white py-12">
@@ -36,9 +42,20 @@ export default async function News(props: {
       </div>
 
       <div className="container space-y-12 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <SearchNews />
-          <FilterNews />
+
+          <div className="flex gap-4">
+            <FilterNews />
+
+            {session?.user && (
+              <Link href="/berita/tambah">
+                <Button size="icon" className="bg-main">
+                  <PlusIcon />
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -47,6 +64,7 @@ export default async function News(props: {
               <CardNews key={index} data={JSON.parse(JSON.stringify(item))} />
             ))}
         </div>
+
         {news.data && news.totalPages > 1 && (
           <NewsPagination totalPages={news.totalPages} />
         )}

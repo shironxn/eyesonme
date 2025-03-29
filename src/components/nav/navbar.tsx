@@ -25,7 +25,7 @@ export function Navbar({ session }: { session: User | undefined }) {
         >
           EyesOnMe
         </Link>
-        <div className="flex gap-8 items-center">
+        <div className="flex flex-row-reverse md:flex-row gap-4 md:gap-8 items-center">
           <MobileNavbar links={links} />
           <DesktopNavbar links={links} />
           {session && (

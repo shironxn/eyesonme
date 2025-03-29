@@ -24,8 +24,8 @@ export interface News {
   id?: string;
   title: string;
   content: string;
-  images: string[];
-  author: string;
+  images: string[] | "/placeholder.jpg";
+  author: string | "Admin";
   category: string;
   likes: number;
   timestamp?: string;
@@ -33,19 +33,13 @@ export interface News {
 
 export async function createNews(data: News) {
   try {
-    if (!data.title.trim() || !data.author.trim() || !data.content.trim()) {
-      return {
-        success: false,
-        message: "Oops! Berita tidak boleh kosong.",
-        details: "Yuk, tulis sesuatu dulu sebelum mengirim.",
-      };
-    }
-
     await addDoc(collection(firestore, "news"), {
       title: data.title.trim(),
-      author: data.author.trim(),
       content: data.content.trim(),
-      likes: 0,
+      images: data.images,
+      author: data.author,
+      category: data.category,
+      likes: data.likes,
       timestamp: serverTimestamp(),
     });
 

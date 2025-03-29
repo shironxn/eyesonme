@@ -79,9 +79,12 @@ export default async function Page({
             <NewsCarousel images={news.data.images} />
           </figure>
         )}
-        <div className="font-medium text-muted">
-          <p>{news.data.content}</p>
-        </div>
+        <div
+          className="prose font-medium text-muted"
+          dangerouslySetInnerHTML={{
+            __html: news?.data?.content,
+          }}
+        />
       </article>
 
       <section className="pt-8">

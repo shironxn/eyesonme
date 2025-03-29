@@ -1,6 +1,6 @@
 "use client";
 
-import { News } from "@/app/actions/news";
+import type { News } from "@/app/actions/news";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -11,36 +11,44 @@ import {
 } from "@/components/ui/card";
 import { HeartIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function CardNews({ data }: { data: News }) {
+  const router = useRouter();
+
   return (
-    <Card>
-      <CardHeader>
-        <Image
-          src={data.images[0]}
-          alt={data.title}
-          width={500}
-          height={500}
-          className="w-full h-auto object-cover rounded-base"
-        />
+    <Card className="flex flex-col h-[450px]">
+      <CardHeader className="flex-1 space-y-3 overflow-hidden p-4">
+        <div className="relative w-full h-48 overflow-hidden rounded-md">
+          <Image
+            src={data.images[0]}
+            alt={data.title}
+            width={500}
+            height={300}
+            className="w-full h-full object-fill"
+          />
+        </div>
         <div>
           <Badge>
             {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
           </Badge>
         </div>
 
-        <Link
-          href={`/berita/${data.id}/${data.title.toLowerCase().replace(/ /g, "-")}`}
-          className="cursor-pointer hover:text-main after:content-none hover:after:content-none focus:after:content-none"
+        <CardTitle
+          className="line-clamp-2 text-lg cursor-pointer hover:text-main"
+          onClick={() =>
+            router.push(
+              `/berita/${data.id}/${data.title.toLowerCase().replace(/ /g, "-")}`,
+            )
+          }
         >
-          <CardTitle>{data.title}</CardTitle>
-        </Link>
+          {data.title}
+        </CardTitle>
         <CardDescription className="line-clamp-3">
-          {data.content}
+          {data.content.replace(/<[^>]+>/g, "\n")}
         </CardDescription>
       </CardHeader>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between mt-auto border-t p-4">
         <small className="flex items-center gap-1">
           <HeartIcon className="h-4 w-4" /> {data.likes}
         </small>

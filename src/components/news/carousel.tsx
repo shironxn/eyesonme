@@ -1,8 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
@@ -14,19 +12,6 @@ interface ImageCarouselProps {
 export function NewsCarousel({ images, className }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  const goToPrevious = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-    setTimeout(() => {
-      setCurrentIndex(newIndex);
-      setTimeout(() => {
-        setIsAnimating(false);
-      }, 500);
-    }, 100);
-  };
 
   const goToNext = useCallback(() => {
     if (isAnimating) return;
@@ -63,7 +48,7 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
 
   return (
     <div className={cn("relative w-full", className)}>
-      <div className="relative h-[400px] w-full overflow-hidden rounded-base border-border">
+      <div className="relative w-full aspect-video overflow-hidden rounded-base border-border">
         {images.map((image, index) => (
           <div
             key={index}
@@ -77,7 +62,7 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
               alt={`Slide ${index + 1}`}
               fill
               className={cn(
-                "object-cover transition-transform duration-700",
+                "object-fill transition-transform duration-700",
                 isAnimating && "scale-[1.02]",
               )}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
@@ -85,26 +70,6 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
             />
           </div>
         ))}
-
-        <Button
-          variant="noShadow"
-          size="icon"
-          className="absolute left-4 top-1/2 z-20 h-8 w-8 -translate-y-1/2 bg-bw hover:bg-white hover:scale-110 transition-transform duration-200"
-          onClick={goToPrevious}
-        >
-          <ChevronLeft className="h-4 w-4" />
-          <span className="sr-only">Previous slide</span>
-        </Button>
-
-        <Button
-          variant="noShadow"
-          size="icon"
-          className="absolute right-4 top-1/2 z-20 h-8 w-8 -translate-y-1/2 bg-bw hover:bg-white hover:scale-110 transition-transform duration-200"
-          onClick={goToNext}
-        >
-          <ChevronRight className="h-4 w-4" />
-          <span className="sr-only">Next slide</span>
-        </Button>
 
         <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 space-x-2">
           {images.map((_, index) => (

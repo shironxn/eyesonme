@@ -4,7 +4,6 @@ import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
@@ -28,25 +27,30 @@ export function NewsPagination({ totalPages }: { totalPages: number }) {
   };
 
   return (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href={handlePagination(page - 1)} />
-        </PaginationItem>
-        {[...Array(totalPages)].map((_, index) => (
-          <PaginationItem key={index}>
-            <PaginationLink
-              isActive={index + 1 === page}
-              href={handlePagination(index + 1)}
-            >
-              {index + 1}
-            </PaginationLink>
+    <Pagination className="flex justify-between items-center">
+      <div>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href={handlePagination(page - 1)}
+              className={page <= 1 ? "pointer-events-none opacity-60" : ""}
+            />
           </PaginationItem>
-        ))}
-        <PaginationItem>
-          <PaginationNext href={handlePagination(page + 1)} />
-        </PaginationItem>
-      </PaginationContent>
+          <PaginationItem>
+            <PaginationNext
+              href={handlePagination(page + 1)}
+              className={
+                page >= totalPages ? "pointer-events-none opacity-60" : ""
+              }
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </div>
+      <div>
+        <p className="text-sm text-muted">
+          {page} of {totalPages}
+        </p>
+      </div>
     </Pagination>
   );
 }
