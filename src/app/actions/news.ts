@@ -24,7 +24,7 @@ export interface News {
   id?: string;
   title: string;
   content: string;
-  images: string[] | "/placeholder.jpg";
+  images: string[];
   author: string | "Admin";
   category: string;
   likes: number;

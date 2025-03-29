@@ -102,7 +102,7 @@ export default function ImageUploader({
                   height={500}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/placeholder.svg";
+                    (e.target as HTMLImageElement).src = "/placeholder.jpg";
                   }}
                 />
               </div>
