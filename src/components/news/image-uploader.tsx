@@ -101,9 +101,6 @@ export default function ImageUploader({
                   width={500}
                   height={500}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/placeholder.jpg";
-                  }}
                 />
               </div>
               <button

@@ -67,9 +67,6 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
               )}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               priority={index === 0}
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "/placeholder.jpg";
-              }}
             />
           </div>
         ))}
@@ -110,9 +107,6 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
                 fill
                 className="object-cover"
                 sizes="64px"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/placeholder.jpg";
-                }}
               />
             </div>
           </button>

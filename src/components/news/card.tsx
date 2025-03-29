@@ -26,9 +26,6 @@ export function CardNews({ data }: { data: News }) {
             width={500}
             height={300}
             className="w-full h-full object-fill"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "/placeholder.jpg";
-            }}
           />
         </div>
         <div>
