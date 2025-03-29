@@ -74,7 +74,7 @@ export default async function Page({
       </div>
 
       <article className="space-y-8 pb-8 border-b">
-        {news.data.images.length > 0 && (
+        {Array.isArray(news.data.images) && (
           <figure className="my-6">
             <NewsCarousel images={news.data.images} />
           </figure>
