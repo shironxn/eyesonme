@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { createNews } from "@/app/actions/news";
+import { createNews, News, updateNews } from "@/app/actions/news";
 import EditorToolbar from "@/components/news/editor-toolbar";
 import ImageUploader from "@/components/news/image-uploader";
 import { Button } from "@/components/ui/button";
@@ -25,13 +25,13 @@ import { useState, useTransition } from "react";
 
 const NEWS_CATEGORIES = ["pengumuman", "prestasi", "acara"];
 
-export default function NewsForm() {
+export default function NewsForm({ data }: { data?: News }) {
   const { toast } = useToast();
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [author, setAuthor] = useState("");
-  const [images, setImages] = useState<string[]>([]);
+  const [title, setTitle] = useState(data?.title || "");
+  const [category, setCategory] = useState(data?.category || "");
+  const [author, setAuthor] = useState(data?.author || "");
+  const [images, setImages] = useState<string[]>(data?.images || []);
   const [isPending, startTransition] = useTransition();
 
   const editor = useEditor({
@@ -43,11 +43,11 @@ export default function NewsForm() {
         emptyEditorClass: "is-editor-empty",
       }),
     ],
+    content: data?.content || "",
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        class:
-          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl max-w-none focus:outline-none",
+        class: "prose max-w-none focus:outline-none",
       },
     },
   });
@@ -77,14 +77,27 @@ export default function NewsForm() {
       const content = editor?.getHTML();
       if (!content) return;
 
-      const res = await createNews({
-        title,
-        author,
-        category,
-        content,
-        images,
-        likes: 0,
-      });
+      let res;
+
+      if (data) {
+        res = await updateNews({
+          ...data,
+          title,
+          author,
+          category,
+          content,
+          images,
+        });
+      } else {
+        res = await createNews({
+          title,
+          author,
+          category,
+          content,
+          images,
+          likes: 0,
+        });
+      }
 
       toast({
         title: res.message,
@@ -165,7 +178,8 @@ export default function NewsForm() {
         </div>
 
         <Button type="submit" disabled={isPending}>
-          {isPending && <Loader2Icon className="animate-spin mr-2" />} Tambah
+          {isPending && <Loader2Icon className="animate-spin mr-2" />}
+          {data ? "Edit Berita" : "Tambah Berita"}
         </Button>
       </div>
     </form>

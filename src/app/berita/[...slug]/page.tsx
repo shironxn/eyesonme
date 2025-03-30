@@ -2,9 +2,15 @@ import { getComments } from "@/app/actions/comment";
 import { getNewsById } from "@/app/actions/news";
 import { NewsCarousel } from "@/components/news/carousel";
 import { CommentForm, DisplayComment } from "@/components/news/comment";
-import { LikeNews, ShareNews } from "@/components/news/cta";
+import {
+  DeleteNews,
+  LikeNews,
+  ShareNews,
+  UpdateNews,
+} from "@/components/news/cta";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
+import { auth } from "@/lib/auth";
 import {
   CalendarIcon,
   MessageSquareIcon,
@@ -36,15 +42,21 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
+  const session = await auth();
+
   const news = await getNewsById(slug[0]);
   if (!news?.data) notFound();
 
   const comments = await getComments(news.data.id!);
 
-  if (!slug[1])
+  if (!slug[1]) {
     redirect(
-      `/berita/${news.data.id}/${news.data.title.toLowerCase().replace(/ /g, "-")}`,
+      `/berita/${news.data.id}/${news.data.title
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")}`,
     );
+  }
 
   return (
     <div className="container py-12 space-y-8">
@@ -68,6 +80,13 @@ export default async function Page({
           </span>
         </div>
         <div className="flex items-center gap-3">
+          {session?.user && (
+            <>
+              <UpdateNews newsId={news.data.id!} />
+              <DeleteNews newsId={news.data.id!} />
+            </>
+          )}
+
           <LikeNews newsId={news.data.id!} likes={news.data.likes} />
           <ShareNews title={news.data.title} />
         </div>
@@ -89,9 +108,9 @@ export default async function Page({
 
       <section className="pt-8">
         {comments.success ? (
-          <div className="space-y-12">
+          <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <h4>Komentar</h4>
+              <h2 className="text-2xl font-semibold">Komentar</h2>
               <MessageSquareIcon />
             </div>
 

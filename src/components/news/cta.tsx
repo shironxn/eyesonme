@@ -1,6 +1,17 @@
 "use client";
 
-import { likeNews } from "@/app/actions/news";
+import { deleteNews, likeNews } from "@/app/actions/news";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,11 +30,17 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { HeartIcon, Share2Icon } from "lucide-react";
+import {
+  HeartIcon,
+  Loader2Icon,
+  Share2Icon,
+  SquarePenIcon,
+  TrashIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useCallback, useEffect, useState, useTransition } from "react";
 
 const provider = new GoogleAuthProvider();
 
@@ -85,7 +102,7 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
   }, [newsId, isLiked, user, toast]);
 
   return (
-    <Button onClick={() => handleLike()}>
+    <Button variant="accent" onClick={() => handleLike()}>
       <HeartIcon fill={isLiked ? "#11001c" : "none"} />
       {likes}
     </Button>
@@ -172,5 +189,72 @@ Klik link berikut untuk membaca artikel ini:\n`);
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  );
+}
+
+export function UpdateNews({ newsId }: { newsId: string }) {
+  const router = useRouter();
+
+  const handleUpdate = () => {
+    router.push("/berita/edit/" + newsId);
+  };
+
+  return (
+    <Button size="icon" className="bg-main" onClick={() => handleUpdate()}>
+      <SquarePenIcon />
+    </Button>
+  );
+}
+
+export function DeleteNews({ newsId }: { newsId: string }) {
+  const { toast } = useToast();
+
+  const [isLoading, startTransition] = useTransition();
+
+  const handleDelete = async () => {
+    startTransition(async () => {
+      const res = await deleteNews(newsId);
+
+      if (res) {
+        toast({
+          title: res.message,
+          description: res.details,
+          variant: "destructive",
+        });
+      }
+    });
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button
+          type="submit"
+          disabled={isLoading}
+          size="icon"
+          variant="destructive"
+          className="bg-red-600"
+        >
+          {isLoading ? <Loader2Icon className="animate-spin" /> : <TrashIcon />}
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Apakah anda yakin?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Artikel yang telah dihapus tidak dapat dikembalikan.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Batal</AlertDialogCancel>
+          <AlertDialogAction
+            onClick={() => handleDelete()}
+            className="bg-destructive text-white"
+          >
+            Hapus
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

@@ -16,16 +16,18 @@ import {
   serverTimestamp,
   setDoc,
   startAfter,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export interface News {
   id?: string;
   title: string;
   content: string;
   images: string[];
-  author: string | "Admin";
+  author: string;
   category: string;
   likes: number;
   timestamp?: string;
@@ -35,9 +37,10 @@ export async function createNews(data: News) {
   try {
     await addDoc(collection(firestore, "news"), {
       title: data.title.trim(),
+      title_lower: data.title.toLowerCase().replace(/[^\w\s-]/g, ""),
       content: data.content.trim(),
       images: data.images,
-      author: data.author,
+      author: data.author || "Admin",
       category: data.category,
       likes: data.likes,
       timestamp: serverTimestamp(),
@@ -187,6 +190,47 @@ export async function getNewsById(id: string) {
       "Terjadi kesalahan saat mengambil berita. Silakan coba lagi nanti.",
     );
   }
+}
+
+export async function updateNews(data: News) {
+  try {
+    await updateDoc(doc(firestore, "news", data.id!), {
+      title: data.title,
+      title_lower: data.title.toLowerCase(),
+      content: data.content,
+      images: data.images,
+      author: data.author,
+      category: data.category,
+    });
+
+    revalidatePath("/berita");
+    return {
+      success: true,
+      message: "Berita berhasil diubah!",
+      details: "Beritamu sudah masuk dan bisa dilihat sekarang.",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat mengubah berita.",
+      details: "Silakan coba lagi nanti.",
+    };
+  }
+}
+
+export async function deleteNews(newsId: string) {
+  try {
+    await deleteDoc(doc(firestore, "news", newsId));
+  } catch (error) {
+    console.error(error);
+    return {
+      message: "Terjadi kesalahan saat menghapus berita.",
+      details: "Silakan coba lagi nanti.",
+    };
+  }
+
+  redirect("/berita");
 }
 
 export async function likeNews(newsId: string, userId: string) {

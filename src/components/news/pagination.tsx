@@ -33,15 +33,13 @@ export function NewsPagination({ totalPages }: { totalPages: number }) {
           <PaginationItem>
             <PaginationPrevious
               href={handlePagination(page - 1)}
-              className={page <= 1 ? "pointer-events-none opacity-60" : ""}
+              className={page <= 1 ? "hidden" : ""}
             />
           </PaginationItem>
           <PaginationItem>
             <PaginationNext
               href={handlePagination(page + 1)}
-              className={
-                page >= totalPages ? "pointer-events-none opacity-60" : ""
-              }
+              className={page >= totalPages ? "hidden" : ""}
             />
           </PaginationItem>
         </PaginationContent>

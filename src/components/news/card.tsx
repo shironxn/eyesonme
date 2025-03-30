@@ -36,11 +36,14 @@ export function CardNews({ data }: { data: News }) {
 
         <CardTitle
           className="line-clamp-2 text-lg cursor-pointer hover:text-main"
-          onClick={() =>
+          onClick={() => {
             router.push(
-              `/berita/${data.id}/${data.title.toLowerCase().replace(/ /g, "-")}`,
-            )
-          }
+              `/berita/${data.id}/${data.title
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, "")
+                .replace(/\s+/g, "-")}`,
+            );
+          }}
         >
           {data.title}
         </CardTitle>

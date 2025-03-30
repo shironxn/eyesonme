@@ -71,47 +71,51 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
           </div>
         ))}
 
-        <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 space-x-2">
-          {images.map((_, index) => (
-            <button
-              key={`indicator-${index}`}
-              onClick={() => goToSlide(index)}
-              className={cn(
-                "h-2 w-2 rounded-full transition-all duration-300",
-                currentIndex === index
-                  ? "bg-white w-6"
-                  : "bg-white/50 hover:bg-white/80",
-              )}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+        {images.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 space-x-2">
+            {images.map((_, index) => (
+              <button
+                key={`indicator-${index}`}
+                onClick={() => goToSlide(index)}
+                className={cn(
+                  "h-2 w-2 rounded-full transition-all duration-300",
+                  currentIndex === index
+                    ? "bg-white w-6"
+                    : "bg-white/50 hover:bg-white/80",
+                )}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      <div className="mt-4 flex gap-4">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={cn(
-              "h-16 w-16 overflow-hidden rounded-base border-border transition-all duration-300",
-              currentIndex === index
-                ? "ring-2 ring-main ring-offset-2 scale-105"
-                : "opacity-70 hover:opacity-100 hover:scale-105",
-            )}
-          >
-            <div className="relative h-full w-full">
-              <Image
-                src={images[index]}
-                alt={`Thumbnail ${index + 1}`}
-                fill
-                className="object-cover"
-                sizes="64px"
-              />
-            </div>
-          </button>
-        ))}
-      </div>
+      {images.length > 1 && (
+        <div className="mt-4 flex gap-4">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={cn(
+                "h-16 w-16 overflow-hidden rounded-base border-border transition-all duration-300",
+                currentIndex === index
+                  ? "ring-2 ring-main ring-offset-2 scale-105"
+                  : "opacity-70 hover:opacity-100 hover:scale-105",
+              )}
+            >
+              <div className="relative h-full w-full">
+                <Image
+                  src={images[index]}
+                  alt={`Thumbnail ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                />
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

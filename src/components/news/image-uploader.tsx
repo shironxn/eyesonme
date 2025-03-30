@@ -20,22 +20,39 @@ export default function ImageUploader({
   const [currentUrl, setCurrentUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  const validateUrl = (url: string): boolean => {
+    try {
+      new URL(url);
+
+      return true;
+    } catch (error) {
+      console.error(error);
+      setError("URL tidak valid");
+      return false;
+    }
+  };
+
   const addImageUrl = () => {
     setError(null);
     if (!currentUrl.trim()) {
       setError("URL tidak boleh kosong");
       return;
     }
+
     if (imageUrls.length >= maxImages) {
       setError(`Maksimal ${maxImages} gambar yang diperbolehkan`);
       return;
     }
+
     if (imageUrls.includes(currentUrl)) {
       setError("URL gambar ini sudah ditambahkan");
       return;
     }
-    setImageUrlsAction([...imageUrls, currentUrl]);
-    setCurrentUrl("");
+
+    if (validateUrl(currentUrl)) {
+      setImageUrlsAction([...imageUrls, currentUrl]);
+      setCurrentUrl("");
+    }
   };
 
   const removeImageUrl = (index: number) => {
@@ -63,6 +80,7 @@ export default function ImageUploader({
           variant="noShadow"
           size="icon"
           type="button"
+          className="bg-accent"
           onClick={addImageUrl}
         >
           <PlusIcon />
@@ -70,7 +88,7 @@ export default function ImageUploader({
       </div>
 
       {error && (
-        <div className="flex items-center gap-2 text-red-500 text-sm">
+        <div className="flex items-center gap-2 text-destructive text-sm">
           <AlertCircle className="h-4 w-4" />
           <span>{error}</span>
         </div>

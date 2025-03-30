@@ -39,7 +39,7 @@ export function FilterNews() {
       {filterOptions.map((item) => (
         <Button
           key={item}
-          variant={filters.includes(item) ? "default" : "neutral"}
+          variant={filters.includes(item) ? "accent" : "neutral"}
           onClick={() => toggleFilter(item)}
         >
           {item.charAt(0).toUpperCase() + item.slice(1)}

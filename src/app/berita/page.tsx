@@ -49,8 +49,8 @@ export default async function News(props: {
             <FilterNews />
 
             {session?.user && (
-              <Link href="/berita/tambah">
-                <Button size="icon" className="bg-main">
+              <Link href="/berita/add">
+                <Button size="icon">
                   <PlusIcon />
                 </Button>
               </Link>
