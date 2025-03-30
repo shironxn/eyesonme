@@ -20,10 +20,7 @@ export default function NotFound() {
           isinya.
         </p>
       </div>
-      <Button
-        className="mt-8 bg-main rounded-lg"
-        onClick={() => router.push("/")}
-      >
+      <Button className="mt-8" onClick={() => router.push("/")}>
         Kembali ke Beranda
       </Button>
     </div>

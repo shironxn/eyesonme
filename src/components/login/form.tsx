@@ -5,15 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2Icon, LockKeyholeIcon, UserIcon } from "lucide-react";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 export function LoginForm() {
   const { toast } = useToast();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const [isPending, startTransition] = useTransition();
 
-  const handleLogin = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     startTransition(async () => {
-      const res = await Login(formData);
+      const res = await Login({
+        username,
+        password,
+      });
 
       if (res) {
         toast({
@@ -26,7 +35,7 @@ export function LoginForm() {
   };
 
   return (
-    <form action={handleLogin} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-4">
         <div className="space-y-2">
           <div className="relative">
@@ -39,6 +48,8 @@ export function LoginForm() {
               placeholder="Username"
               className="pl-10"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </div>
@@ -55,13 +66,15 @@ export function LoginForm() {
               type="password"
               className="pl-10"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
       </div>
 
       <Button size="lg" type="submit" disabled={isPending}>
-        {isPending && <Loader2Icon className="animate-spin mr-2" />} Log In
+        {isPending && <Loader2Icon className="animate-spin mr-2" />} Masuk
       </Button>
     </form>
   );

@@ -6,6 +6,7 @@
   --main: #ffc700;
   --secondary: #2c1b47;
   --accent: #a5e22a;
+  --destructive: #ff3b3b;
 
   --overlay: rgba(0, 0, 0, 0.8);
   --bg: #fffffe;
@@ -34,7 +35,7 @@ h1 {
 }
 
 h2 {
-  @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+  @apply scroll-m-20 pb-2 text-3xl text-text font-semibold tracking-tight transition-colors first:mt-0;
   font-family: var(--font-lexend);
   line-height: 1.3;
 }
@@ -102,6 +103,8 @@ small {
 
 body {
   font-family: var(--font-poppins);
+  color: var(--text);
+  background-color: var(--bg);
 }
 
 .tiptap p.is-editor-empty:first-child::before {

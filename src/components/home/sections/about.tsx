@@ -9,8 +9,8 @@ export default function AboutSection() {
     >
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="flex flex-col justify-center text-center md:items-start md:text-left">
-          <h2>Tentang Kami</h2>
-          <p>
+          <h2 className="text-white">Tentang Kami</h2>
+          <p className="text-white">
             MPK-OSIS SMA Negeri 48 Jakarta adalah wadah bagi siswa/i untuk
             mengembangkan karakter, kreativitas, dan kepemimpinan, sekaligus
             menjadi pelopor perubahan positif di sekolah.

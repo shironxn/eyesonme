@@ -9,11 +9,11 @@ export function HomeCTA() {
 
   return (
     <>
-      <Button onClick={() => router.push("/proker")} className="bg-main">
+      <Button onClick={() => router.push("/proker")}>
         <ClipboardListIcon />
         Program Kerja
       </Button>
-      <Button onClick={() => router.push("#visi-misi")}>
+      <Button onClick={() => router.push("#visi-misi")} variant="accent">
         <StarIcon /> Visi Misi
       </Button>
     </>

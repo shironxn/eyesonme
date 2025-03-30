@@ -22,6 +22,7 @@ export default {
         main: "var(--main)",
         secondary: "var(--secondary)",
         accent: "var(--accent)",
+        destructive: "var(--destructive)",
         overlay: "var(--overlay)",
         bg: "var(--bg)",
         bw: "var(--bw)",
@@ -32,8 +33,6 @@ export default {
         border: "var(--border)",
         ring: "var(--ring)",
         ringOffset: "var(--ring-offset)",
-
-        secondaryBlack: "#212121",
       },
       borderRadius: {
         base: "8px",

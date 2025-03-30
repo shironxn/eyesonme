@@ -9,7 +9,7 @@ import { useState, useTransition } from "react";
 
 export function FormAspiration() {
   const [message, setMessage] = useState("");
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, startTransition] = useTransition();
 
   const { toast } = useToast();
 
@@ -41,8 +41,8 @@ export function FormAspiration() {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <Button type="submit" disabled={isPending}>
-        {isPending && <Loader2Icon className="animate-spin mr-2" />} Kirim
+      <Button variant="accent" size="lg" type="submit" disabled={isLoading}>
+        {isLoading && <Loader2Icon className="animate-spin mr-2" />} Kirim
       </Button>
     </form>
   );

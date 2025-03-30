@@ -6,12 +6,17 @@ export default auth((req) => {
     return Response.redirect(newUrl);
   }
 
-  if (!req.auth && req.nextUrl.pathname === "/berita/tambah") {
-    const newUrl = new URL("/login", req.nextUrl.origin);
-    return Response.redirect(newUrl);
+  if (!req.auth && req.nextUrl.pathname.includes("/berita")) {
+    if (
+      req.nextUrl.pathname.includes("/add") ||
+      req.nextUrl.pathname.includes("/edit")
+    ) {
+      const newUrl = new URL("/login", req.nextUrl.origin);
+      return Response.redirect(newUrl);
+    }
   }
 });
 
 export const config = {
-  matcher: ["/login/:path*", "/berita/tambah/:path*"],
+  matcher: ["/login/:path*", "/berita/:path*"],
 };

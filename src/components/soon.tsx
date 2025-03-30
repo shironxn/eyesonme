@@ -17,7 +17,7 @@ export default function ComingSoon() {
           Atmin sedang sibuk ngerjain halaman ini, mohon ditunggu yh.
         </p>
       </div>
-      <Button className="mt-8 bg-main" onClick={() => router.push("/")}>
+      <Button className="mt-8" onClick={() => router.push("/")}>
         Kembali ke Beranda
       </Button>
     </div>

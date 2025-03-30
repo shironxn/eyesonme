@@ -3,9 +3,14 @@
 import { signIn } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export async function Login(formData: FormData) {
+export interface User {
+  username: string;
+  password: string;
+}
+
+export async function Login(data: User) {
   try {
-    const { username, password } = Object.fromEntries(formData.entries());
+    const { username, password } = data;
 
     if (!username || !password) {
       return {
