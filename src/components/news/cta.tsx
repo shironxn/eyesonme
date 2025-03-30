@@ -74,7 +74,7 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
   }, [newsId, user]);
 
   const handleLike = useCallback(async () => {
-    if (!user) {
+    if (!user?.uid) {
       try {
         await signInWithPopup(auth, provider);
       } catch (error) {
@@ -86,18 +86,19 @@ export function LikeNews({ newsId, likes }: { newsId: string; likes: number }) {
         });
         return;
       }
-    } else {
-      const res = await likeNews(newsId, user.uid);
+    }
 
-      if (res.success) {
-        setIsLiked(!isLiked);
-      } else {
-        toast({
-          title: res.message,
-          description: res.details,
-          variant: "destructive",
-        });
-      }
+    if (!user?.uid) return;
+    const res = await likeNews(newsId, user.uid);
+
+    if (res.success) {
+      setIsLiked(!isLiked);
+    } else {
+      toast({
+        title: res.message,
+        description: res.details,
+        variant: "destructive",
+      });
     }
   }, [newsId, isLiked, user, toast]);
 

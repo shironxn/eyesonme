@@ -179,7 +179,7 @@ export default function NewsForm({ data }: { data?: News }) {
 
         <Button type="submit" disabled={isPending}>
           {isPending && <Loader2Icon className="animate-spin mr-2" />}
-          {data ? "Edit Berita" : "Tambah Berita"}
+          {data ? "Simpan" : "Tambah"}
         </Button>
       </div>
     </form>
