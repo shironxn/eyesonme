@@ -22,7 +22,7 @@ export default function AspirationSection() {
         </div>
         <div className="hidden md:flex justify-center">
           <Image
-            src="/beranda/berita.png"
+            src="/home/aspiration.png"
             alt="Ilustrasi Aspirasi"
             width={250}
             height={250}
