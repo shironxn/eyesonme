@@ -123,17 +123,19 @@ export async function getNews({
     const countSnapshot = await getCountFromServer(countQuery);
     const totalDocuments = countSnapshot.data().count;
 
-    const data = await Promise.all(
+    const data: News[] = await Promise.all(
       snapshot.docs.map(async (item) => {
         const likes = await getCountFromServer(
           collection(firestore, "news", item.id, "likes"),
         );
 
         return {
-          ...item.data(),
-          title: item.data().title,
-          category: item.data().category,
           id: item.id,
+          title: item.data().title,
+          content: item.data().content,
+          images: item.data().images,
+          author: item.data().author,
+          category: item.data().category,
           likes: likes.data().count,
           timestamp: item.data().timestamp.toDate().toLocaleString("id-ID", {
             day: "numeric",

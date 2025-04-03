@@ -61,7 +61,11 @@ export default async function News(props: {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {Array.isArray(news.data) &&
             news.data.map((item, index) => (
-              <CardNews key={index} data={JSON.parse(JSON.stringify(item))} />
+              <CardNews
+                key={index}
+                data={JSON.parse(JSON.stringify(item))}
+                index={index}
+              />
             ))}
         </div>
 
