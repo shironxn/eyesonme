@@ -43,7 +43,7 @@ export function CardNews({ data, index }: { data: News; index: number }) {
       custom={index}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true }}
       whileHover="hover"
       whileTap="tap"
       variants={cardVariants}

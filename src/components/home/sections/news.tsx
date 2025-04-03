@@ -21,7 +21,7 @@ export default function NewsSection({ news }: { news: News[] }) {
           className="text-center max-w-2xl mx-auto"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           variants={textVariants}
         >
           <h2>Berita Terbaru</h2>
