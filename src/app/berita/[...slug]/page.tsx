@@ -99,7 +99,7 @@ export default async function Page({
           </figure>
         )}
         <div
-          className="prose font-medium text-muted"
+          className="font-medium text-muted"
           dangerouslySetInnerHTML={{
             __html: news?.data?.content,
           }}

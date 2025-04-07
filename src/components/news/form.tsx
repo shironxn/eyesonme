@@ -47,7 +47,7 @@ export default function NewsForm({ data }: { data?: News }) {
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        class: "prose max-w-none focus:outline-none",
+        class: "max-w-none focus:outline-none",
       },
     },
   });

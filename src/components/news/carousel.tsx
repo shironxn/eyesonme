@@ -39,12 +39,12 @@ export function NewsCarousel({ images, className }: ImageCarouselProps) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!isAnimating) {
+      if (!isAnimating && images.length > 1) {
         goToNext();
       }
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex, isAnimating, goToNext]);
+  }, [currentIndex, isAnimating, images, goToNext]);
 
   return (
     <div className={cn("relative w-full", className)}>
