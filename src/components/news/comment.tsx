@@ -48,6 +48,14 @@ export function CommentForm({ newsId }: { newsId: string }) {
     if (!user) {
       try {
         await signInWithPopup(auth, provider);
+
+        toast({
+          title: "Berhasil masuk.",
+          description: "Silahkan kirim komentar Anda.",
+          variant: "default",
+        });
+
+        return;
       } catch (error) {
         console.error(error);
         toast({
