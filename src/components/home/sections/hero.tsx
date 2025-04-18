@@ -49,7 +49,7 @@ export default function HeroSection() {
           </motion.div>
         </div>
         <motion.div
-          className="flex-1 flex justify-center w-1/2"
+          className="flex-1 flex justify-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -58,9 +58,9 @@ export default function HeroSection() {
           <Image
             src="/logo/mpkosis.svg"
             alt="MPK OSIS Logo"
-            width={300}
-            height={300}
-            className="max-w-full h-auto"
+            width={400}
+            height={400}
+            className="w-full max-w-[300px]"
             priority
           />
         </motion.div>

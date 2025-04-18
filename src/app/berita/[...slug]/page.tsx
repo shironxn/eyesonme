@@ -108,7 +108,7 @@ export default async function Page({
 
       <section className="pt-8">
         {comments.success ? (
-          <div className="space-y-4">
+          <div className="space-y-8">
             <div className="flex items-center gap-4">
               <h2 className="text-2xl font-semibold">Komentar</h2>
               <MessageSquareIcon />
