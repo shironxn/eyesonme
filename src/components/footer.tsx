@@ -38,10 +38,10 @@ export function Footer() {
               target="_blank"
             >
               <Image
-                src="/logo/eyesonme.svg"
-                alt="Eyes on Me Logo"
-                width={60}
-                height={60}
+                src="/logo/mpkosis.svg"
+                alt="MPK OSIS Logo"
+                width={80}
+                height={80}
               />
             </Link>
           </motion.div>

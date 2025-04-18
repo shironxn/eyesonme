@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { LogOutIcon } from "lucide-react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 
 const links: { name: string; href: string }[] = [
@@ -23,7 +24,12 @@ export function Navbar({ session }: { session: User | undefined }) {
           href="/"
           className="hover: cursor-pointer font-semibold text-lg after:content-none hover:after:content-none focus:after:content-none "
         >
-          EyesOnMe
+          <Image
+            src="/logo/mpkosis.svg"
+            alt="MPK OSIS Logo"
+            width={60}
+            height={60}
+          />
         </Link>
         <div className="flex flex-row-reverse md:flex-row gap-4 md:gap-8 items-center">
           <MobileNavbar links={links} />

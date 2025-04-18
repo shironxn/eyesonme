@@ -49,17 +49,17 @@ export default function HeroSection() {
           </motion.div>
         </div>
         <motion.div
-          className="flex-1 flex justify-center lg:justify-end w-1/2"
+          className="flex-1 flex justify-center w-1/2"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={logoVariants}
         >
           <Image
-            src="/logo/eyesonme.svg"
-            alt="Eyes on Me Logo"
-            width={250}
-            height={250}
+            src="/logo/mpkosis.svg"
+            alt="MPK OSIS Logo"
+            width={300}
+            height={300}
             className="max-w-full h-auto"
             priority
           />

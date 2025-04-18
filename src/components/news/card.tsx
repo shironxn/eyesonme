@@ -48,15 +48,15 @@ export function CardNews({ data, index }: { data: News; index: number }) {
       whileTap="tap"
       variants={cardVariants}
     >
-      <Card className="flex flex-col h-[450px]">
+      <Card className="flex flex-col h-full min-h-[450px] md:h-[450px]">
         <CardHeader className="flex-1 space-y-3 overflow-hidden p-4">
-          <div className="relative w-full h-48 overflow-hidden rounded-md">
+          <div className="relative w-full aspect-video overflow-hidden rounded-md">
             <Image
               src={data.images[0]}
               alt={data.title}
-              width={500}
-              height={300}
-              className="w-full h-full object-fill"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div>
@@ -66,7 +66,7 @@ export function CardNews({ data, index }: { data: News; index: number }) {
           </div>
 
           <CardTitle
-            className="line-clamp-2 text-lg cursor-pointer hover:text-main"
+            className="line-clamp-2 text-lg md:text-xl cursor-pointer hover:text-main"
             onClick={() => {
               router.push(
                 `/berita/${data.id}/${data.title
@@ -79,15 +79,15 @@ export function CardNews({ data, index }: { data: News; index: number }) {
             {data.title}
           </CardTitle>
 
-          <CardDescription className="line-clamp-3">
+          <CardDescription className="line-clamp-3 text-sm md:text-base">
             {data.content.replace(/<[^>]+>/g, "\n")}
           </CardDescription>
         </CardHeader>
         <CardFooter className="flex justify-between mt-auto border-t p-4">
-          <small className="flex items-center gap-1">
+          <small className="flex items-center gap-1 text-xs md:text-sm">
             <HeartIcon className="h-4 w-4" /> {data.likes}
           </small>
-          <small>{data.timestamp}</small>
+          <small className="text-xs md:text-sm">{data.timestamp}</small>
         </CardFooter>
       </Card>
     </motion.div>
