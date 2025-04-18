@@ -10,15 +10,27 @@ import Image from "next/image";
 import Link from "next/link";
 
 const links: { name: string; href: string }[] = [
-  { name: "Beranda", href: "/" },
-  { name: "Program Kerja", href: "/proker" },
-  { name: "Struktur Organisasi", href: "/struktur" },
-  { name: "Berita", href: "/berita" },
+  {
+    name: "Beranda",
+    href: "/",
+  },
+  {
+    name: "Program Kerja",
+    href: "/proker",
+  },
+  {
+    name: "Struktur Organisasi",
+    href: "/struktur",
+  },
+  {
+    name: "Berita",
+    href: "/berita",
+  },
 ];
 
 export function Navbar({ session }: { session: User | undefined }) {
   return (
-    <nav className="py-4 md:py-8 bg-bw navbar">
+    <nav className="py-4 bg-bw navbar">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           href="/"
@@ -27,8 +39,8 @@ export function Navbar({ session }: { session: User | undefined }) {
           <Image
             src="/logo/mpkosis.svg"
             alt="MPK OSIS Logo"
-            width={60}
-            height={60}
+            width={80}
+            height={80}
           />
         </Link>
         <div className="flex flex-row-reverse md:flex-row gap-4 md:gap-8 items-center">
