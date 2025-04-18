@@ -33,14 +33,14 @@ export const metadata: Metadata = {
       "MPK-OSIS SMA Negeri 48 Jakarta Periode 2024/2025 - Wadah pengembangan karakter, kreativitas, dan kepemimpinan siswa.",
     images: [
       {
-        url: "/image1.jpg",
+        url: "/home/image1.jpg",
         width: 1200,
         height: 630,
         alt: "Harsanala Xayasadha",
       },
     ],
   },
-  metadataBase: new URL("https://eyesonme.vercel.app"),
+  metadataBase: new URL("https://mpkosis-sman48jkt.vercel.app"),
 };
 
 export default async function RootLayout({
